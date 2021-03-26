@@ -2,7 +2,6 @@
 
 .footer-root {
   @include dimensions(60px, 100%);
-  @include border($blue);
   background-color: $color-secondary;
   color: $text-primary;
 
@@ -15,6 +14,15 @@
     @include text-size();
     div {
       @include margin-sides($margin-half);
+    }
+  }
+}
+
+@include breakpoint-min(xs) {
+  .footer-root .container {
+    @include justify-align(flex-start, center);
+    div:first-of-type {
+      margin-left: $margin-global;
     }
   }
 }

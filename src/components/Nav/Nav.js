@@ -4,8 +4,8 @@ const Nav = () => {
   return (
     <div className='nav-root'>
       <div className='container'>
-        <div className='title h3'>App Title</div>
-        <div className='sub-container h5'>
+        <div className='title'>App Title</div>
+        <div className='sub-container'>
           <div>logo</div>
           <div>more</div>
           <div className='link'>link</div>

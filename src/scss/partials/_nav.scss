@@ -13,12 +13,14 @@
     @include push-auto;
   }
   .sub-container {
+    @include text-size($h5);
     @include flex-row;
     div {
       margin-right: $margin-global;
     }
   }
   .title {
+    @include text-size($h3);
     margin-left: $margin-global;
   }
 }

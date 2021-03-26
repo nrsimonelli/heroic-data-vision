@@ -11,8 +11,11 @@ class Main extends Component {
   render() {
     return (
       <div className='main-root'>
-        <div className='container'>
-          <div className='content'>main content</div>
+        <div className='main-container'>
+          <div>title</div>
+          <div>img container</div>
+          <div>graph container</div>
+          <div>graph container</div>
           <div className='test'></div>
         </div>
       </div>

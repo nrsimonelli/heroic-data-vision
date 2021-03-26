@@ -3,4 +3,16 @@
 
 .main-root {
   flex: 1 0 auto;
+  @include border();
+  width: 100%;
+  display: flex;
+}
+
+.main-container {
+  @include border($green);
+  @include flex-col();
+  @include justify-align(flex-start, flex-start);
+  @include push-auto;
+  max-width: $max-width-global;
+  width: 100%;
 }
