@@ -1,2 +1,6 @@
 @use './abstracts/' as *;
 @use './partials/' as *;
+
+.main-root {
+  flex: 1 0 auto;
+}

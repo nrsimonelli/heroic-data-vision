@@ -139,6 +139,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   line-height: 1.75;
+  background-color: #fafafa;
 }
 
 .h1,
@@ -195,8 +196,11 @@ a:hover {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
   min-height: 100vh;
   width: 100vw;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .nav-root {
@@ -226,6 +230,35 @@ a:hover {
 }
 .nav-root .title {
   margin-left: 12px;
+}
+
+.footer-root {
+  height: 60px;
+  width: 100%;
+  border: 2px solid #1890ff;
+  background-color: #faad14;
+  color: rgba(0, 0, 0, 0.85);
+}
+.footer-root .container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.footer-root .container div {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.main-root {
+  flex: 1 0 auto;
 }
 
 /*# sourceMappingURL=main.css.map */

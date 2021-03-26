@@ -1,0 +1,20 @@
+@use '../abstracts/' as *;
+
+.footer-root {
+  @include dimensions(60px, 100%);
+  @include border($blue);
+  background-color: $color-secondary;
+  color: $text-primary;
+
+  .container {
+    height: 100%;
+    @include flex-row;
+    @include justify-align(center, center);
+    max-width: $max-width-global;
+    @include push-auto;
+    @include text-size();
+    div {
+      @include margin-sides($margin-half);
+    }
+  }
+}
