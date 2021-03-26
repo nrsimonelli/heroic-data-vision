@@ -4,15 +4,52 @@
 .main-root {
   flex: 1 0 auto;
   @include border();
-  width: 100%;
+  width: 100vw;
+  min-height: 600px;
   display: flex;
+  flex-direction: column;
 }
 
-.main-container {
+.main-header-container {
+  width: 100%;
+  max-width: $max-width-global;
+  @include push-auto;
+  @include border($blue);
+  @include flex-row();
+  @include justify-align(space-between, center);
+
+  div {
+    @include margin-sides($margin-global);
+    @include margin-ends($margin-global);
+    @include text-size($h5);
+    @include border($green);
+  }
+}
+
+.main-content-container {
   @include border($green);
-  @include flex-col();
+  @include flex-row(wrap);
   @include justify-align(flex-start, flex-start);
   @include push-auto;
   max-width: $max-width-global;
   width: 100%;
+}
+
+.image-primary {
+  @include border;
+}
+.graph-primary {
+  @include border($cyan);
+}
+.image-secondary {
+  @include border($yellow);
+}
+.graph-secondary {
+  @include border($purple);
+}
+
+.image,
+.graph {
+  @include dimensions(150px, 150px);
+  background-color: $gray-10;
 }
