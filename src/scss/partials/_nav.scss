@@ -1,0 +1,24 @@
+@use '../abstracts/' as *;
+
+.nav-root {
+  @include dimensions(80px, 100%);
+  background-color: $color-primary;
+  color: $text-inverse-primary;
+
+  .container {
+    height: 100%;
+    @include flex-row;
+    @include justify-align(space-between);
+    max-width: $max-width-global;
+    @include push-auto;
+  }
+  .sub-container {
+    @include flex-row;
+    div {
+      margin-right: $margin-global;
+    }
+  }
+  .title {
+    margin-left: $margin-global;
+  }
+}

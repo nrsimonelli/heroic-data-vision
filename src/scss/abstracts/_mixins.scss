@@ -1,20 +1,33 @@
+$media-breakpoints: (
+  xs: 480px,
+  sm: 640px,
+  md: 800px,
+  lg: 960px,
+  xl: 1200px,
+) !default;
+
 @mixin border($color: red) {
-  border: 1px solid $color;
+  border: 2px solid $color;
 }
 
-@mixin margin-sides($left: 0, $right: 0) {
-  margin-left: $left;
-  margin-right: $right;
+@mixin push-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@mixin margin-ends($top: 0, $bottom: 0) {
-  margin-top: $top;
-  margin-bottom: $bottom;
+@mixin margin-sides($value: $margin-global) {
+  margin-left: $value;
+  margin-right: $value;
 }
 
-@mixin padding-sides($left: 0, $right: 0) {
-  padding-left: $left;
-  padding-right: $right;
+@mixin margin-ends($value: $margin-global) {
+  margin-top: $value;
+  margin-bottom: $value;
+}
+
+@mixin padding-sides($value: $margin-global) {
+  padding-left: $value;
+  padding-right: $value;
 }
 
 @mixin padding-ends($top: 0, $bottom: 0) {
@@ -98,4 +111,8 @@
   $color: rgba(black, nth(0.24 0.23 0.23 0.22 0.22, $depth));
 
   @return 0 $primary-offset $blur $color;
+}
+
+@function rem($px, $base: $base-font-size) {
+  @return ($px / $base) * 1rem;
 }

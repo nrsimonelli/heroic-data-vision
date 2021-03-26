@@ -1,12 +1,2 @@
 @use './abstracts/' as *;
 @use './partials/' as *;
-
-.test {
-  transition: 0.5s;
-  @include card(2);
-  @include dimensions(150px, 150px);
-  &:hover {
-    transition: 0.5s;
-    @include card(4);
-  }
-}
