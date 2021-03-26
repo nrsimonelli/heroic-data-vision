@@ -35,21 +35,72 @@
   width: 100%;
 }
 
+.image-primary,
+.graph-primary {
+  @include dimensions(35vh, 49%);
+}
+
 .image-primary {
   @include border;
+  @include flex-col();
+  @include justify-align(flex-start, flex-start);
+
+  .image {
+    margin-left: $margin-global;
+    margin-top: $margin-global;
+    @include dimensions(60%, calc(100% - 48px));
+    background-color: $gray-10;
+  }
+  .image-description {
+    margin-left: $margin-global;
+    margin-top: $margin-half;
+    @include text-size($h5);
+  }
 }
+
 .graph-primary {
-  @include border($cyan);
+  @include border($purple);
+  @include flex-col();
+  @include justify-align(flex-start, flex-end);
+
+  .graph {
+    margin-right: $margin-global;
+    margin-top: $margin-global;
+    @include dimensions(60%, calc(100% - 48px));
+    background-color: $blue;
+  }
 }
 .image-secondary {
   @include border($yellow);
 }
 .graph-secondary {
   @include border($purple);
+  @include flex-col();
+  @include justify-align(center, center);
+  margin-top: $margin-half;
+  width: 100%;
+  height: 25vh;
+  .graph {
+    background-color: $color-accent;
+    @include margin-sides($margin-global);
+    @include dimensions(calc(100% - 24px), calc(100% - 48px));
+  }
 }
 
-.image,
-.graph {
-  @include dimensions(150px, 150px);
-  background-color: $gray-10;
+@include breakpoint-max(xs) {
+  .image-primary,
+  .graph-primary {
+    background-color: $color-accent;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .image,
+    .image-description,
+    .graph {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
 }

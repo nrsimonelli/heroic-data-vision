@@ -18,12 +18,10 @@ class Main extends Component {
         <div className='main-content-container'>
           <div className='image-primary'>
             <div className='image'></div>
+            <div className='image-description'>description</div>
           </div>
           <div className='graph-primary'>
             <div className='graph'></div>
-          </div>
-          <div className='image-secondary'>
-            <div className='image'></div>
           </div>
           <div className='graph-secondary'>
             <div className='graph'></div>
