@@ -1,0 +1,54 @@
+// Colors
+$red: #f5222d;
+$volcano: #fa541c;
+$orange: #fa8c16;
+$gold: #faad14;
+$yellow: #fadb14;
+$lime: #a0d911;
+$green: #52c41a;
+$cyan: #13c2c2;
+$blue: #1890ff;
+$blue-geek: #2f54eb;
+$purple: #722ed1;
+$magenta: #eb2f96;
+
+// Primary and secondary text - disable - border - divider - theader
+$white-85: rgba(255, 255, 255, 0.85);
+$white-45: rgba(255, 255, 255, 0.45);
+$white-30: rgba(255, 255, 255, 0.3);
+$white-20: rgba(255, 255, 255, 0.2);
+$white-12: rgba(255, 255, 255, 0.12);
+$white-08: rgba(255, 255, 255, 0.08);
+$white-04: rgba(255, 255, 255, 0.04);
+
+$black-85: rgba(0, 0, 0, 0.85);
+$black-45: rgba(0, 0, 0, 0.45);
+$black-25: rgba(0, 0, 0, 0.25);
+$black-15: rgba(0, 0, 0, 0.15);
+$black-06: rgba(0, 0, 0, 0.06);
+$black-04: rgba(0, 0, 0, 0.04);
+$black-02: rgba(0, 0, 0, 0.02);
+
+// #fff -> #000
+$gray-01: #ffffff;
+$gray-02: #fafafa;
+$gray-03: #fdfdfd;
+$gray-04: #f0f0f0;
+$gray-05: #d9d9d9;
+$gray-06: #bfbfbf;
+$gray-07: #8c8c8c;
+$gray-08: #595959;
+$gray-09: #434343;
+$gray-10: #262626;
+$gray-11: #1f1f1f;
+$gray-12: #141414;
+$gray-13: #000000;
+
+// Breakpoints
+$media-breakpoints: (
+  xs: 480px,
+  sm: 640px,
+  md: 800px,
+  lg: 960px,
+  xl: 1200px,
+) !default;
