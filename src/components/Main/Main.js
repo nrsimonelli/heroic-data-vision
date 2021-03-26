@@ -13,6 +13,7 @@ class Main extends Component {
       <div className='main-root'>
         <div className='container'>
           <div className='content'>main content</div>
+          <div className='test'></div>
         </div>
       </div>
     );

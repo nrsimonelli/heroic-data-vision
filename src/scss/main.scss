@@ -1,17 +1,12 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@use './abstracts/' as *;
+@use './partials/' as *;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.root {
-  background-color: aliceblue;
+.test {
+  transition: 0.5s;
+  @include card(2);
+  @include dimensions(150px, 150px);
+  &:hover {
+    transition: 0.5s;
+    @include card(4);
+  }
 }

@@ -1,0 +1,20 @@
+@use './variables' as *;
+
+$color-primary: $volcano;
+$color-secondary: $gold;
+$color-accent: $lime;
+
+$color-default: $blue;
+$color-success: $green;
+$color-warning: $gold;
+$color-error: $red;
+
+$background: $gray-02;
+$background-inverse: $gray-12;
+
+$text-primary: $black-85;
+$text-secondary: $black-45;
+$text-disabled: $black-25;
+$text-inverse-primary: $white-85;
+$text-inverse-secondary: $white-45;
+$text-inverse-disabled: $white-30;
