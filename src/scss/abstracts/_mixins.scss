@@ -92,7 +92,27 @@ $media-breakpoints: (
   }
 }
 
-@mixin card($depth) {
+@mixin egg($value) {
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  height: $value;
+  width: calc(#{$value} * 0.7);
+  @if $value == sm {
+    height: 230px;
+    width: calc(230px * 0.7);
+  }
+  @if $value == md {
+    height: 460px;
+    width: calc(460px * 0.7);
+  }
+  @if $value == lg {
+    height: 640;
+    width: calc(640 * 0.7);
+  }
+}
+
+@mixin shadow($depth) {
   @if $depth < 1 {
     box-shadow: none;
   } @else if $depth > 5 {

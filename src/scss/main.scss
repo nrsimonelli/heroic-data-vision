@@ -14,20 +14,20 @@
   width: 100%;
   max-width: $max-width-global;
   @include push-auto;
-  @include border($blue);
   @include flex-row();
   @include justify-align(space-between, center);
 
   div {
-    @include margin-sides($margin-global);
-    @include margin-ends($margin-global);
-    @include text-size($h5);
-    @include border($green);
+    @include push-auto;
+    margin-top: $margin-global;
+    margin-bottom: $margin-half;
+    @include text-size($h3);
+    text-align: center;
+    width: 50%;
   }
 }
 
 .main-content-container {
-  @include border($green);
   @include flex-row(wrap);
   @include justify-align(flex-start, flex-start);
   @include push-auto;
@@ -37,24 +37,22 @@
 
 .image-primary,
 .graph-primary {
-  @include dimensions(35vh, 49%);
+  @include dimensions(35vh, 50%);
 }
 
 .image-primary {
-  @include border;
   @include flex-col();
-  @include justify-align(flex-start, flex-start);
+  @include justify-align(flex-start, center);
 
   .image {
-    margin-left: $margin-global;
-    margin-top: $margin-global;
-    @include dimensions(60%, calc(100% - 48px));
-    background-color: $gray-10;
-  }
-  .image-description {
-    margin-left: $margin-global;
     margin-top: $margin-half;
-    @include text-size($h5);
+    @include push-auto;
+    // background-image: url('https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/70-batman.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    @include egg(sm);
+    background-color: black;
+    @include shadow(2);
   }
 }
 
@@ -66,25 +64,30 @@
   .graph {
     margin-right: $margin-global;
     margin-top: $margin-global;
-    @include dimensions(60%, calc(100% - 48px));
-    background-color: $blue;
+    @include dimensions(230px, calc(100% - 48px));
   }
 }
 .image-secondary {
   @include border($yellow);
 }
 .graph-secondary {
-  @include border($purple);
   @include flex-col();
-  @include justify-align(center, center);
-  margin-top: $margin-half;
-  width: 100%;
-  height: 25vh;
+  @include justify-align(center, space-around);
+  @include border($green);
+  margin-top: $margin-global;
+  height: 40vh;
+  width: 100vw;
+  background-color: $gray-01;
   .graph {
-    background-color: $color-accent;
-    @include margin-sides($margin-global);
-    @include dimensions(calc(100% - 24px), calc(100% - 48px));
+    @include margin-sides(0);
+    height: 70%;
+    width: calc(100% - 48px);
   }
+}
+.switch-icon {
+  align-self: center;
+  margin-bottom: $margin-half;
+  cursor: pointer;
 }
 
 @include breakpoint-max(xs) {
