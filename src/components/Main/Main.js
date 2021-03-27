@@ -4,6 +4,7 @@ import {
   LineChart,
   AreaChart,
   Line,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -152,6 +153,7 @@ class Main extends Component {
   state = {
     width: 0,
     switchGraph: true,
+    isLoading: false,
   };
 
   render() {
@@ -215,6 +217,66 @@ class Main extends Component {
 
     const data = [int, str, spd, dur, pow, com];
 
+    const myLineChart = (
+      <LineChart width={500} height={400} data={data}>
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='name' />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type='monotone'
+          dataKey={rawData[0].name}
+          stroke={
+            rawData[0].biography.alignment === 'good'
+              ? '#1890ff'
+              : '#722ed1'
+          }
+          activeDot={{ r: 6 }}
+        />
+        <Line
+          type='monotone'
+          dataKey={rawData[1].name}
+          stroke={
+            rawData[1].biography.alignment === 'good'
+              ? '#fa8c16'
+              : '#fa541c'
+          }
+          activeDot={{ r: 6 }}
+        />
+      </LineChart>
+    );
+
+    const myAreaChart = (
+      <AreaChart width={500} height={400} data={data}>
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='name' />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Area
+          type='monotone'
+          dataKey={rawData[0].name}
+          stroke={
+            rawData[0].biography.alignment === 'good'
+              ? '#1890ff'
+              : '#722ed1'
+          }
+          activeDot={{ r: 6 }}
+        />
+        <Area
+          type='monotone'
+          dataKey={rawData[1].name}
+          stroke={
+            rawData[1].biography.alignment === 'good'
+              ? '#fa8c16'
+              : '#fa541c'
+          }
+          activeDot={{ r: 6 }}
+        />
+      </AreaChart>
+    );
+
     return (
       <div className='main-root'>
         <div className='main-content-container'>
@@ -229,33 +291,7 @@ class Main extends Component {
             </div>
             <div className='graph'>
               <ResponsiveContainer height='100%' width='100%'>
-                <LineChart width={500} height={400} data={data}>
-                  <CartesianGrid strokeDasharray='3 3' />
-                  <XAxis dataKey='name' />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type='monotone'
-                    dataKey={rawData[0].name}
-                    stroke={
-                      rawData[0].biography.alignment === 'good'
-                        ? '#1890ff'
-                        : '#722ed1'
-                    }
-                    activeDot={{ r: 6 }}
-                  />
-                  <Line
-                    type='monotone'
-                    dataKey={rawData[1].name}
-                    stroke={
-                      rawData[1].biography.alignment === 'good'
-                        ? '#fa8c16'
-                        : '#fa541c'
-                    }
-                    activeDot={{ r: 6 }}
-                  />
-                </LineChart>
+                {this.state.switchGraph ? myLineChart : myAreaChart}
               </ResponsiveContainer>
             </div>
           </div>
@@ -265,6 +301,8 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapReduxStateToProps = (reduxState) => ({
+  hero: reduxState,
+});
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapReduxStateToProps)(Main);
