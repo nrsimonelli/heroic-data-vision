@@ -241,14 +241,22 @@ class Main extends Component {
                   <Line
                     type='monotone'
                     dataKey={rawData[0].name}
-                    stroke='#8884d8'
-                    activeDot={{ r: 8 }}
+                    stroke={
+                      rawData[0].biography.alignment === 'good'
+                        ? '#1890ff'
+                        : '#722ed1'
+                    }
+                    activeDot={{ r: 6 }}
                   />
                   <Line
                     type='monotone'
                     dataKey={rawData[1].name}
-                    stroke='#82ca9d'
-                    activeDot={{ r: 8 }}
+                    stroke={
+                      rawData[1].biography.alignment === 'good'
+                        ? '#fa8c16'
+                        : '#fa541c'
+                    }
+                    activeDot={{ r: 6 }}
                   />
                 </LineChart>
               </ResponsiveContainer>
