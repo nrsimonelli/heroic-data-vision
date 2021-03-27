@@ -12,6 +12,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+import Hero from '../Hero/Hero';
+
 const SAMPLE_DATA = [
   {
     id: 70,
@@ -151,6 +153,8 @@ class Main extends Component {
 
   render() {
     const rawData = SAMPLE_DATA;
+    const heroOne = rawData[0];
+    const heroTwo = rawData[1];
 
     const int = Object.assign(
       {},
@@ -199,30 +203,9 @@ class Main extends Component {
 
     return (
       <div className='main-root'>
-        <div className='main-header-container'>
-          <div className='title'>{SAMPLE_DATA[0].name}</div>
-          <div className='select'>{SAMPLE_DATA[1].name}</div>
-        </div>
         <div className='main-content-container'>
-          <div className='image-primary'>
-            <div
-              className='image'
-              style={{
-                backgroundImage: `url(${SAMPLE_DATA[0].images.sm})`,
-              }}
-            ></div>
-          </div>
-          <div className='image-primary'>
-            <div
-              className='image'
-              style={{
-                backgroundImage: `url(${SAMPLE_DATA[1].images.sm})`,
-              }}
-            ></div>
-          </div>
-          {/* <div className='graph-primary'>
-            <div className='graph'></div>
-          </div> */}
+          <Hero data={heroOne} />
+          <Hero data={heroTwo} />
           <div className='graph-secondary'>
             <div
               className='switch-icon'

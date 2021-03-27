@@ -36,8 +36,9 @@
 }
 
 .image-primary,
-.graph-primary {
-  @include dimensions(35vh, 50%);
+.graph-secondary {
+  @include dimensions(40vh, 50%);
+  min-height: calc(720px * 0.45);
 }
 
 .image-primary {

@@ -313,9 +313,10 @@ a:hover {
 }
 
 .image-primary,
-.graph-primary {
-  height: 35vh;
+.graph-secondary {
+  height: 40vh;
   width: 50%;
+  min-height: calc(720px * 0.45);
 }
 
 .image-primary {
