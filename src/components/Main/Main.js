@@ -129,6 +129,9 @@ const SAMPLE_DATA = [
 class Main extends Component {
   componentDidMount = () => {
     console.log('hello from Main.js');
+    this.props.dispatch({
+      type: 'FETCH_HERO',
+    });
     this.updateWidth();
     window.addEventListener('resize', this.updateWidth);
   };
@@ -155,6 +158,17 @@ class Main extends Component {
     const rawData = SAMPLE_DATA;
     const heroOne = rawData[0];
     const heroTwo = rawData[1];
+
+    const comparePowerStats = Object.keys(rawData[0].powerstats);
+    const result = [];
+    comparePowerStats.forEach(function (powerstat) {
+      const statInfo = { powerstat }; // { thing: 'X }
+      rawData.forEach(function (personInfo) {
+        statInfo[personInfo.name] = personInfo.powerstats[powerstat];
+      }); // { thing: 'X', Alex: 1, Bob: 3, Carl: 3 }
+      result.push(statInfo);
+    });
+    console.log('germy method', result);
 
     const int = Object.assign(
       {},
