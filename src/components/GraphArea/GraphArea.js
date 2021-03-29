@@ -11,9 +11,24 @@ import {
 } from 'recharts';
 
 const GraphArea = (props) => {
-  const heroOne = props.heroOne;
-  const heroTwo = props.heroTwo;
-  const result = props.result;
+  const heroOneId = props.heroOne;
+  const heroTwoId = props.heroTwo;
+
+  const hero = props.data.heroReducer;
+  const heroOne = hero[heroOneId];
+  const heroTwo = hero[heroTwoId];
+
+  const comparePowerStats = Object.keys(hero[0].powerstats);
+  const result = [];
+  comparePowerStats.forEach(function (powerstat) {
+    const statInfo = { powerstat };
+    hero.forEach(function (heroInfo) {
+      statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+    });
+    result.push(statInfo);
+  });
+  console.log('germy method', result);
+  console.log('hero', hero[heroOne]);
 
   return (
     <div className='graph'>
@@ -111,4 +126,5 @@ const GraphArea = (props) => {
     </div>
   );
 };
+
 export default GraphArea;

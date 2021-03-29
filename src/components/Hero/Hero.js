@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   LeftOutlined,
   RightOutlined,
@@ -12,12 +12,19 @@ const rand = Math.floor(Math.random() * (max - min + 1) + min);
 
 const Hero = (props) => {
   const [heroNum, setHeroNum] = useState(rand);
+  const test = props.heroId;
+
+  useEffect(() => {
+    if (test) {
+      test(heroNum);
+    }
+  }, [heroNum, test]);
 
   const hero = props.data.heroReducer;
 
   const prevHero = () => {
     if (heroNum === 0) {
-      setHeroNum(500);
+      setHeroNum(561);
     } else {
       setHeroNum(heroNum - 1);
     }
@@ -29,7 +36,7 @@ const Hero = (props) => {
   };
 
   const nextHero = () => {
-    if (heroNum === 500) {
+    if (heroNum === 561) {
       setHeroNum(0);
     } else {
       setHeroNum(heroNum + 1);
@@ -52,7 +59,7 @@ const Hero = (props) => {
         style={
           hero[0] !== undefined
             ? { backgroundImage: `url(${hero[heroNum].images.sm})` }
-            : { backgroundColor: 'blue' }
+            : {}
         }
       ></div>
       <div className='hero-select'>

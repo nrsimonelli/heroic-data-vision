@@ -308,7 +308,7 @@ a:hover {
   width: calc(sm * 0.7);
   height: 230px;
   width: calc(230px * 0.7);
-  background-color: black;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
 
@@ -419,25 +419,6 @@ a:hover {
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
-  }
-}
-.loader {
-  border: 16px solid #f3f3f3;
-  /* Light grey */
-  border-top: 16px solid #3498db;
-  /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
 .hero-select {
