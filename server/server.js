@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/hero', heroRouter);
+app.use('/api', heroRouter);
 
 // Serve static files
 app.use(express.static('build'));

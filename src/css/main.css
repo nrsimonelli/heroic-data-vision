@@ -269,6 +269,49 @@ a:hover {
     margin-left: 24px;
   }
 }
+.hero-select {
+  border: 2px solid #2f54eb;
+  display: flex;
+  flex-direction: row;
+}
+.hero-select div {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.hero-select div:hover, .hero-select div:focus {
+  cursor: pointer;
+}
+
+.image-primary {
+  height: 40vh;
+  width: 50%;
+  min-height: calc(820px * 0.45);
+}
+
+.image-primary {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.image-primary .image {
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  height: sm;
+  width: calc(sm * 0.7);
+  height: 230px;
+  width: calc(230px * 0.7);
+  background-color: black;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+}
+
 .main-root {
   flex: 1 0 auto;
   border: 2px solid red;
@@ -312,35 +355,10 @@ a:hover {
   width: 100%;
 }
 
-.image-primary,
 .graph-secondary {
   height: 40vh;
   width: 50%;
   min-height: calc(720px * 0.45);
-}
-
-.image-primary {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-}
-.image-primary .image {
-  margin-top: 12px;
-  margin-left: auto;
-  margin-right: auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
-  height: sm;
-  width: calc(sm * 0.7);
-  height: 230px;
-  width: calc(230px * 0.7);
-  background-color: black;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
 
 .graph-primary {
@@ -356,10 +374,6 @@ a:hover {
   margin-top: 24px;
   height: 230px;
   width: calc(100% - 48px);
-}
-
-.image-secondary {
-  border: 2px solid #fadb14;
 }
 
 .graph-secondary {
@@ -406,6 +420,32 @@ a:hover {
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.hero-select {
+  margin-top: 24px;
+}
+
+.icon:hover, .icon:focus {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */

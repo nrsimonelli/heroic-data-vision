@@ -1,0 +1,34 @@
+@use '../abstracts/' as *;
+
+.hero-select {
+  @include border($color-primary);
+  display: flex;
+  flex-direction: row;
+  div {
+    @include margin-sides($margin-half);
+    @include hocus {
+      cursor: pointer;
+    }
+  }
+}
+
+.image-primary {
+  @include dimensions(40vh, 50%);
+  min-height: calc(820px * 0.45);
+}
+
+.image-primary {
+  @include flex-col();
+  @include justify-align(flex-start, center);
+
+  .image {
+    margin-top: $margin-half;
+    @include push-auto;
+    // background-image: url('https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/70-batman.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    @include egg(sm);
+    background-color: black;
+    @include shadow(2);
+  }
+}

@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  LineChart,
-  AreaChart,
-  Line,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
 
 import Hero from '../Hero/Hero';
+import GraphArea from '../GraphArea/GraphArea';
+import GraphBar from '../GraphBar/GraphBar';
 
 const SAMPLE_DATA = [
   {
@@ -133,155 +123,41 @@ class Main extends Component {
     this.props.dispatch({
       type: 'FETCH_HERO',
     });
-    this.updateWidth();
-    window.addEventListener('resize', this.updateWidth);
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener('resize', this.updateWidth);
-  };
-
-  updateWidth = () => {
-    this.setState({ width: window.innerWidth });
-    console.log('window width is:', window.innerWidth);
   };
 
   changeGraphType = () => {
     this.setState({ switchGraph: !this.state.switchGraph });
   };
 
+  changeHeroTwo = () => {};
+
   state = {
-    width: 0,
     switchGraph: true,
-    isLoading: false,
+    isInitialized: false,
   };
 
   render() {
-    const rawData = SAMPLE_DATA;
+    const rawData = SAMPLE_DATA; //this.props.hero
     const heroOne = rawData[0];
     const heroTwo = rawData[1];
 
-    const comparePowerStats = Object.keys(rawData[0].powerstats);
+    const comparePowerStats = Object.keys(heroOne.powerstats);
     const result = [];
     comparePowerStats.forEach(function (powerstat) {
-      const statInfo = { powerstat }; // { thing: 'X }
-      rawData.forEach(function (personInfo) {
-        statInfo[personInfo.name] = personInfo.powerstats[powerstat];
-      }); // { thing: 'X', Alex: 1, Bob: 3, Carl: 3 }
+      const statInfo = { powerstat };
+      rawData.forEach(function (heroInfo) {
+        statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+      });
       result.push(statInfo);
     });
+
     console.log('germy method', result);
-
-    const int = Object.assign(
-      {},
-      ...rawData.map((s) => ({
-        name: 'intelligence',
-        [s.name]: s.powerstats.intelligence,
-      }))
-    );
-    const str = Object.assign(
-      {},
-      ...rawData.map((s) => ({
-        name: 'strength',
-        [s.name]: s.powerstats.strength,
-      }))
-    );
-    const spd = Object.assign(
-      {},
-      ...rawData.map((s) => ({
-        name: 'speed',
-        [s.name]: s.powerstats.speed,
-      }))
-    );
-    const dur = Object.assign(
-      {},
-      ...rawData.map((s) => ({
-        name: 'durability',
-        [s.name]: s.powerstats.durability,
-      }))
-    );
-    const pow = Object.assign(
-      {},
-      ...rawData.map((s) => ({
-        name: 'power',
-        [s.name]: s.powerstats.power,
-      }))
-    );
-    const com = Object.assign(
-      {},
-      ...rawData.map((s) => ({
-        name: 'combat',
-        [s.name]: s.powerstats.combat,
-      }))
-    );
-
-    const data = [int, str, spd, dur, pow, com];
-
-    const myLineChart = (
-      <LineChart width={500} height={400} data={data}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='name' />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type='monotone'
-          dataKey={rawData[0].name}
-          stroke={
-            rawData[0].biography.alignment === 'good'
-              ? '#1890ff'
-              : '#722ed1'
-          }
-          activeDot={{ r: 6 }}
-        />
-        <Line
-          type='monotone'
-          dataKey={rawData[1].name}
-          stroke={
-            rawData[1].biography.alignment === 'good'
-              ? '#fa8c16'
-              : '#fa541c'
-          }
-          activeDot={{ r: 6 }}
-        />
-      </LineChart>
-    );
-
-    const myAreaChart = (
-      <AreaChart width={500} height={400} data={data}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='name' />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Area
-          type='monotone'
-          dataKey={rawData[0].name}
-          stroke={
-            rawData[0].biography.alignment === 'good'
-              ? '#1890ff'
-              : '#722ed1'
-          }
-          activeDot={{ r: 6 }}
-        />
-        <Area
-          type='monotone'
-          dataKey={rawData[1].name}
-          stroke={
-            rawData[1].biography.alignment === 'good'
-              ? '#fa8c16'
-              : '#fa541c'
-          }
-          activeDot={{ r: 6 }}
-        />
-      </AreaChart>
-    );
 
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          <Hero data={heroOne} />
-          <Hero data={heroTwo} />
+          <Hero data={this.props.hero} />
+          {/* <Hero data={this.props.hero} /> */}
           <div className='graph-secondary'>
             <div
               className='switch-icon'
@@ -289,11 +165,19 @@ class Main extends Component {
             >
               {this.state.switchGraph ? 'click me' : 'switch back'}
             </div>
-            <div className='graph'>
-              <ResponsiveContainer height='100%' width='100%'>
-                {this.state.switchGraph ? myLineChart : myAreaChart}
-              </ResponsiveContainer>
-            </div>
+            {this.state.switchGraph ? (
+              <GraphArea
+                heroOne={heroOne}
+                heroTwo={heroTwo}
+                result={result}
+              />
+            ) : (
+              <GraphBar
+                heroOne={heroOne}
+                heroTwo={heroTwo}
+                result={result}
+              />
+            )}
           </div>
         </div>
       </div>

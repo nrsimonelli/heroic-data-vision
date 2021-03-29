@@ -35,26 +35,9 @@
   width: 100%;
 }
 
-.image-primary,
 .graph-secondary {
   @include dimensions(40vh, 50%);
   min-height: calc(720px * 0.45);
-}
-
-.image-primary {
-  @include flex-col();
-  @include justify-align(flex-start, center);
-
-  .image {
-    margin-top: $margin-half;
-    @include push-auto;
-    // background-image: url('https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/70-batman.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    @include egg(sm);
-    background-color: black;
-    @include shadow(2);
-  }
 }
 
 .graph-primary {
@@ -68,9 +51,7 @@
     @include dimensions(230px, calc(100% - 48px));
   }
 }
-.image-secondary {
-  @include border($yellow);
-}
+
 .graph-secondary {
   @include flex-col();
   @include justify-align(center, space-around);
@@ -106,5 +87,33 @@
       margin-top: 0;
       margin-bottom: 0;
     }
+  }
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-select {
+  margin-top: $margin-global;
+}
+
+.icon {
+  @include hocus {
+    cursor: pointer;
   }
 }
