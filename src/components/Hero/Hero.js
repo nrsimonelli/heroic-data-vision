@@ -6,10 +6,6 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons';
 
-const min = Math.ceil(0);
-const max = Math.floor(723);
-const rand = Math.floor(Math.random() * (max - min + 1) + min);
-
 const Hero = (props) => {
   const hero = props.data;
   const heroId = props.heroId;

@@ -113,9 +113,19 @@ const STATIC_DATA = [
 ];
 
 class Main extends Component {
-  componentDidMount = () => {
+  async componentDidMount() {
     console.log('hello from Main.js');
-    this.getHero(50);
+    await this.getHero(50);
+    await this.setGraphType();
+    console.log('props', this.props);
+    console.log('hero?', this.props.hero);
+    console.log('graph', this.props.graph);
+  }
+
+  setGraphType = () => {
+    this.props.dispatch({
+      type: 'FETCH_RADAR',
+    });
   };
 
   getHero = (id) => {
@@ -127,20 +137,17 @@ class Main extends Component {
   };
 
   changeGraphType = () => {
-    const type = this.state.switchGraph;
-    if (type === 1) {
-      this.setState({ switchGraph: 2 });
+    const type = this.props.graph.type;
+    console.log('type', type);
+    if (type === 'LINE') {
+      this.props.dispatch({ type: 'FETCH_RADAR' });
     }
-    if (type === 2) {
-      this.setState({ switchGraph: 3 });
+    if (type === 'RADAR') {
+      this.props.dispatch({ type: 'FETCH_BAR' });
     }
-    if (type === 3) {
-      this.setState({ switchGraph: 1 });
+    if (type === 'BAR') {
+      this.props.dispatch({ type: 'FETCH_LINE' });
     }
-  };
-
-  state = {
-    switchGraph: 1,
   };
 
   render() {
@@ -153,44 +160,48 @@ class Main extends Component {
 
     const heroOne = STATIC_DATA[0];
     const heroTwo = STATIC_DATA[1];
-    const type = this.state.switchGraph;
+    const type = this.props.graph.type;
 
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          <Hero data={heroOne} heroId={eggOneId} />
-          <Hero data={heroTwo} heroId={eggTwoId} />
+          <Hero data={heroOne} egg={''} heroId={eggOneId} />
+          <Hero data={heroTwo} egg={''} heroId={eggTwoId} />
           <div className='graph-secondary'>
             <div
               className='switch-icon'
               onClick={this.changeGraphType}
             >
-              {type === 1 ? (
-                <RadarChartOutlined
-                  style={{ fontSize: 24 }}
-                  onClick={this.changeGraphType}
-                />
-              ) : type === 2 ? (
-                <BarChartOutlined
-                  style={{ fontSize: 24 }}
-                  onClick={this.changeGraphType}
-                />
-              ) : (
+              {/* {this.props.graph === undefined ? (
+                <LoadingOutlined />
+              ) : type === 'BAR' ? (
                 <LineChartOutlined
                   style={{ fontSize: 24 }}
                   onClick={this.changeGraphType}
                 />
-              )}
+              ) : type.type === 'RADAR' ? (
+                <BarChartOutlined
+                  style={{ fontSize: 24 }}
+                  onClick={this.changeGraphType}
+                />
+              ) : type.type === 'LINE' ? (
+                <LineChartOutlined
+                  style={{ fontSize: 24 }}
+                  onClick={this.changeGraphType}
+                />
+              ) : (
+                <LoadingOutlined />
+              )} */}
             </div>
             {this.props.hero === undefined ? (
               <LoadingOutlined style={{ fontSize: 64 }} />
-            ) : type === 1 ? (
+            ) : type === 'LINE' ? (
               <GraphArea
                 heroOne={heroOne}
                 heroTwo={heroTwo}
                 data={STATIC_DATA}
               />
-            ) : type === 2 ? (
+            ) : type === 'RADAR' ? (
               <GraphRadar
                 heroOne={heroOne}
                 heroTwo={heroTwo}
@@ -211,7 +222,10 @@ class Main extends Component {
 }
 
 const mapReduxStateToProps = (reduxState) => ({
-  hero: reduxState,
+  hero: reduxState.heroReducer,
+  eggOne: reduxState.eggOneReducer,
+  eggTwo: reduxState.eggTwoReducer,
+  graph: reduxState.graphTypeReducer,
 });
 
 export default connect(mapReduxStateToProps)(Main);

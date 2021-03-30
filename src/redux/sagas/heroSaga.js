@@ -10,8 +10,28 @@ function* fetchHero() {
   }
 }
 
+function* fetchEggOne() {
+  try {
+    const response = yield axios.get('/api/egg1');
+    yield put({ type: 'SET_EGGONE', payload: response.data });
+  } catch (err) {
+    console.log('api get request EGGONE failed', err);
+  }
+}
+
+function* fetchEggTwo() {
+  try {
+    const response = yield axios.get('/api/egg2');
+    yield put({ type: 'SET_EGGTWO', payload: response.data });
+  } catch (err) {
+    console.log('api get request EGGTWO failed', err);
+  }
+}
+
 function* heroSaga() {
   yield takeLatest('FETCH_HERO', fetchHero);
+  yield takeLatest('FETCH_EGGONE', fetchEggOne);
+  yield takeLatest('FETCH_EGGTWO', fetchEggTwo);
 }
 
 export default heroSaga;
