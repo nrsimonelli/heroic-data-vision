@@ -124,7 +124,7 @@ class Main extends Component {
 
   setGraphType = () => {
     this.props.dispatch({
-      type: 'FETCH_RADAR',
+      type: 'SET_LINE',
     });
   };
 
@@ -140,13 +140,13 @@ class Main extends Component {
     const type = this.props.graph.type;
     console.log('type', type);
     if (type === 'LINE') {
-      this.props.dispatch({ type: 'FETCH_RADAR' });
-    }
-    if (type === 'RADAR') {
       this.props.dispatch({ type: 'FETCH_BAR' });
     }
-    if (type === 'BAR') {
+    if (type === 'RADAR') {
       this.props.dispatch({ type: 'FETCH_LINE' });
+    }
+    if (type === 'BAR') {
+      this.props.dispatch({ type: 'FETCH_RADAR' });
     }
   };
 
@@ -172,28 +172,28 @@ class Main extends Component {
               className='switch-icon'
               onClick={this.changeGraphType}
             >
-              {/* {this.props.graph === undefined ? (
+              {this.props.graph === undefined ? (
                 <LoadingOutlined />
               ) : type === 'BAR' ? (
+                <RadarChartOutlined
+                  style={{ fontSize: 24 }}
+                  onClick={this.changeGraphType}
+                />
+              ) : type === 'RADAR' ? (
                 <LineChartOutlined
                   style={{ fontSize: 24 }}
                   onClick={this.changeGraphType}
                 />
-              ) : type.type === 'RADAR' ? (
+              ) : type === 'LINE' ? (
                 <BarChartOutlined
-                  style={{ fontSize: 24 }}
-                  onClick={this.changeGraphType}
-                />
-              ) : type.type === 'LINE' ? (
-                <LineChartOutlined
                   style={{ fontSize: 24 }}
                   onClick={this.changeGraphType}
                 />
               ) : (
                 <LoadingOutlined />
-              )} */}
+              )}
             </div>
-            {this.props.hero === undefined ? (
+            {this.props.graph === undefined ? (
               <LoadingOutlined style={{ fontSize: 64 }} />
             ) : type === 'LINE' ? (
               <GraphArea
@@ -207,12 +207,14 @@ class Main extends Component {
                 heroTwo={heroTwo}
                 data={STATIC_DATA}
               />
-            ) : (
+            ) : type === 'BAR' ? (
               <GraphBar
                 heroOne={heroOne}
                 heroTwo={heroTwo}
                 data={STATIC_DATA}
               />
+            ) : (
+              <LoadingOutlined />
             )}
           </div>
         </div>
