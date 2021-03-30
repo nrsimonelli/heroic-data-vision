@@ -1,7 +1,6 @@
 @use '../abstracts/' as *;
 
 .hero-select {
-  @include border($color-primary);
   display: flex;
   flex-direction: row;
   div {
@@ -13,8 +12,8 @@
 }
 
 .image-primary {
-  @include dimensions(40vh, 50%);
-  min-height: calc(820px * 0.45);
+  @include dimensions(30vh, 50%);
+  min-height: calc(780px * 0.45);
 }
 
 .image-primary {
@@ -24,8 +23,7 @@
   .image {
     margin-top: $margin-half;
     @include push-auto;
-    background-position: center;
-    background-repeat: no-repeat;
+
     @include egg(sm);
 
     background-image: linear-gradient(

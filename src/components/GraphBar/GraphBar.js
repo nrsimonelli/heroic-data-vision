@@ -13,7 +13,17 @@ import {
 const GraphBar = (props) => {
   const heroOne = props.heroOne;
   const heroTwo = props.heroTwo;
-  const result = props.result;
+  const hero = props.data;
+
+  const comparePowerStats = Object.keys(hero[0].powerstats);
+  const result = [];
+  comparePowerStats.forEach(function (powerstat) {
+    const statInfo = { powerstat };
+    hero.forEach(function (heroInfo) {
+      statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+    });
+    result.push(statInfo);
+  });
 
   return (
     <div className='graph'>

@@ -11,6 +11,20 @@ import {
 } from 'recharts';
 
 const GraphRadar = (props) => {
+  const heroOne = props.heroOne;
+  const heroTwo = props.heroTwo;
+
+  const hero = props.data;
+
+  const comparePowerStats = Object.keys(hero[0].powerstats);
+  const result = [];
+  comparePowerStats.forEach(function (powerstat) {
+    const statInfo = { powerstat };
+    hero.forEach(function (heroInfo) {
+      statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+    });
+    result.push(statInfo);
+  });
   return (
     <div className='graph'>
       <ResponsiveContainer height='100%' width='100%'>
@@ -18,21 +32,21 @@ const GraphRadar = (props) => {
           outerRadius={80}
           width={500}
           height={500}
-          data={props.result}
+          data={result}
         >
           <PolarGrid />
           <PolarAngleAxis dataKey='powerstat' />
           <PolarRadiusAxis angle={30} domain={[0, 110]} />
           <Radar
-            name={props.heroOne.name}
-            dataKey={props.heroOne.name}
+            name={heroOne.name}
+            dataKey={heroOne.name}
             stroke={
-              props.heroOne.biography.alignment === 'good'
+              heroOne.biography.alignment === 'good'
                 ? '#1890ff'
                 : '#722ed1'
             }
             fill={
-              props.heroOne.biography.alignment === 'good'
+              heroOne.biography.alignment === 'good'
                 ? '#1890ff'
                 : '#722ed1'
             }
@@ -40,15 +54,15 @@ const GraphRadar = (props) => {
             activeDot={{ r: 6 }}
           />
           <Radar
-            name={props.heroTwo.name}
-            dataKey={props.heroTwo.name}
+            name={heroTwo.name}
+            dataKey={heroTwo.name}
             stroke={
               props.heroTwo.biography.alignment === 'good'
                 ? '#fa8c16'
                 : '#fa541c'
             }
             fill={
-              props.heroTwo.biography.alignment === 'good'
+              heroTwo.biography.alignment === 'good'
                 ? '#fa8c16'
                 : '#fa541c'
             }

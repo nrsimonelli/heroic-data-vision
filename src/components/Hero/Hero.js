@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   LeftOutlined,
   RightOutlined,
@@ -6,73 +6,51 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons';
 
-const min = Math.ceil(0);
-const max = Math.floor(520);
-const rand = Math.floor(Math.random() * (max - min + 1) + min);
+// const min = Math.ceil(0);
+// const max = Math.floor(520);
+// const rand = Math.floor(Math.random() * (max - min + 1) + min);
 
 const Hero = (props) => {
-  const [heroNum, setHeroNum] = useState(rand);
-  const test = props.heroId;
+  const hero = props.data;
 
-  useEffect(() => {
-    if (test) {
-      test(heroNum);
-    }
-  }, [heroNum, test]);
-
-  const hero = props.data.heroReducer;
-
-  const prevHero = () => {
-    if (heroNum === 0) {
-      setHeroNum(561);
-    } else {
-      setHeroNum(heroNum - 1);
-    }
+  const prevClicked = () => {
+    console.log('previous was clicked');
   };
 
-  const randHero = () => {
-    let x = Math.floor(Math.random() * (max - min + 1) + min);
-    setHeroNum(x);
+  const nextClicked = () => {
+    console.log('next was clicked');
   };
 
-  const nextHero = () => {
-    if (heroNum === 561) {
-      setHeroNum(0);
-    } else {
-      setHeroNum(heroNum + 1);
-    }
+  const randClicked = () => {
+    console.log('rand was clicked');
   };
 
   return (
     <div className='image-primary'>
       <div className='main-header-container'>
         <div className='title'>
-          {hero[0] !== undefined ? (
-            hero[heroNum].name
-          ) : (
-            <LoadingOutlined />
-          )}
+          {hero !== undefined ? hero.name : <LoadingOutlined />}
         </div>
       </div>
       <div
         className='image'
         style={
-          hero[0] !== undefined
-            ? { backgroundImage: `url(${hero[heroNum].images.sm})` }
+          hero !== undefined
+            ? { backgroundImage: `url(${hero.image.url})` }
             : {}
         }
       ></div>
       <div className='hero-select'>
         <LeftOutlined
           className='icon'
-          style={{ marginRight: 12 }}
-          onClick={prevHero}
+          onClick={prevClicked}
+          style={{ marginRight: 24 }}
         />
-        <ReloadOutlined className='icon' onClick={randHero} />
+        <ReloadOutlined className='icon' onClick={randClicked} />
         <RightOutlined
           className='icon'
-          style={{ marginLeft: 12 }}
-          onClick={nextHero}
+          onClick={nextClicked}
+          style={{ marginLeft: 24 }}
         />
       </div>
     </div>

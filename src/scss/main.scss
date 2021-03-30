@@ -3,9 +3,8 @@
 
 .main-root {
   flex: 1 0 auto;
-  @include border();
   width: 100vw;
-  min-height: 600px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
 }
@@ -23,7 +22,7 @@
     margin-bottom: $margin-half;
     @include text-size($h3);
     text-align: center;
-    width: 50%;
+    width: 100%;
   }
 }
 
@@ -55,7 +54,6 @@
 .graph-secondary {
   @include flex-col();
   @include justify-align(center, space-around);
-  @include border($green);
   margin-top: $margin-global;
   height: 40vh;
   width: 100vw;
@@ -75,9 +73,9 @@
 @include breakpoint-max(xs) {
   .image-primary,
   .graph-primary {
-    background-color: $color-accent;
+    @include border;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     .image,
     .image-description,
@@ -98,4 +96,8 @@
   @include hocus {
     cursor: pointer;
   }
+}
+
+a {
+  color: inherit;
 }

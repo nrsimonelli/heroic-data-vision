@@ -1,4 +1,5 @@
 import React from 'react';
+import { GithubOutlined } from '@ant-design/icons';
 
 const Nav = () => {
   return (
@@ -6,9 +7,11 @@ const Nav = () => {
       <div className='container'>
         <div className='title'>Power Stats</div>
         <div className='sub-container'>
-          <div>logo</div>
-          <div>more</div>
-          <div>gh icon</div>
+          <div>
+            <a href='https://github.com/nrsimonelli/heroic-data-vision'>
+              <GithubOutlined />
+            </a>
+          </div>
         </div>
       </div>
     </div>

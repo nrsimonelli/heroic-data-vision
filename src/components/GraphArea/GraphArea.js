@@ -11,12 +11,10 @@ import {
 } from 'recharts';
 
 const GraphArea = (props) => {
-  const heroOneId = props.heroOne;
-  const heroTwoId = props.heroTwo;
+  const heroOne = props.heroOne;
+  const heroTwo = props.heroTwo;
 
-  const hero = props.data.heroReducer;
-  const heroOne = hero[heroOneId];
-  const heroTwo = hero[heroTwoId];
+  const hero = props.data;
 
   const comparePowerStats = Object.keys(hero[0].powerstats);
   const result = [];
@@ -28,7 +26,8 @@ const GraphArea = (props) => {
     result.push(statInfo);
   });
   console.log('germy method', result);
-  console.log('hero', hero[heroOne]);
+  console.log('hero', hero);
+  console.log('props', props);
 
   return (
     <div className='graph'>
