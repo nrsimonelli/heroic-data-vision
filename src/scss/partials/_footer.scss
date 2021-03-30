@@ -17,7 +17,13 @@
     }
   }
 }
-
+.footer-link {
+  color: $white-85;
+  @include hocus {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
 @include breakpoint-min(xs) {
   .footer-root .container {
     @include justify-align(flex-start, center);

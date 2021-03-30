@@ -260,6 +260,14 @@ a:hover {
   margin-right: 12px;
 }
 
+.footer-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+.footer-link:hover, .footer-link:focus {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 @media (min-width: 481px) {
   .footer-root .container {
     justify-content: flex-start;
@@ -306,6 +314,7 @@ a:hover {
   height: 230px;
   width: calc(230px * 0.7);
   background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  background-size: cover;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
 
@@ -377,11 +386,11 @@ a:hover {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: space-around;
+  align-items: center;
   margin-top: 24px;
   height: 40vh;
   width: 100vw;
-  background-color: #ffffff;
+  background-color: #fafafa;
 }
 .graph-secondary .graph {
   margin-left: 0;
@@ -393,23 +402,17 @@ a:hover {
 .switch-icon {
   align-self: center;
   margin-bottom: 12px;
-  cursor: pointer;
 }
 
 @media (max-width: 480px) {
-  .image-primary,
-.graph-primary {
-    border: 2px solid red;
+  .image-primary {
     width: 100%;
     justify-content: flex-start;
     align-items: center;
   }
   .image-primary .image,
 .image-primary .image-description,
-.image-primary .graph,
-.graph-primary .image,
-.graph-primary .image-description,
-.graph-primary .graph {
+.image-primary .graph {
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -420,12 +423,16 @@ a:hover {
   margin-top: 24px;
 }
 
-.icon:hover, .icon:focus {
+.icon:hover, .icon:focus,
+.switch-icon:hover,
+.switch-icon:focus {
   cursor: pointer;
+  transform: scale(1.5);
 }
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=main.css.map */

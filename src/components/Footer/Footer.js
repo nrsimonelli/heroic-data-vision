@@ -4,9 +4,11 @@ const Footer = () => {
   return (
     <div className='footer-root'>
       <div className='container'>
-        <div>footer </div>
-        <div>more </div>
-        <div>things</div>
+        <div className='footer-link'>
+          <a href='https://nrsimonelli.github.io'>
+            developed by nrsimonelli
+          </a>
+        </div>
       </div>
     </div>
   );

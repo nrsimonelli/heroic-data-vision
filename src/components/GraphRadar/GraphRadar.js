@@ -69,7 +69,6 @@ const GraphRadar = (props) => {
             fillOpacity={0.5}
             activeDot={{ r: 6 }}
           />
-
           <Tooltip />
           <Legend />
         </RadarChart>
