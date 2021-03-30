@@ -130,9 +130,10 @@ class Main extends Component {
 
   getHero = (id) => {
     console.log('getHero id', id);
+    const heroId = id;
     this.props.dispatch({
       type: 'FETCH_HERO',
-      payload: id,
+      params: { heroId },
     });
   };
 
@@ -151,21 +152,32 @@ class Main extends Component {
   };
 
   render() {
-    const eggOneId = (value) => {
+    const eggOneId = async (value) => {
+      const heroId = value;
+      await this.props.dispatch({
+        type: 'FETCH_EGGONE',
+        params: { heroId },
+      });
       console.log('eggOne says:', value);
     };
     const eggTwoId = (value) => {
+      const heroId = value;
+      this.props.dispatch({
+        type: 'FETCH_EGGTWO',
+        params: { heroId },
+      });
       console.log('eggTwo says', value);
     };
 
     const heroOne = STATIC_DATA[0];
     const heroTwo = STATIC_DATA[1];
     const type = this.props.graph.type;
+    const eggOneData = this.props.eggOne;
 
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          <Hero data={heroOne} egg={''} heroId={eggOneId} />
+          <Hero data={heroOne} egg={eggOneData} heroId={eggOneId} />
           <Hero data={heroTwo} egg={''} heroId={eggTwoId} />
           <div className='graph-secondary'>
             <div

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
 import {
   LeftOutlined,
   RightOutlined,
@@ -6,9 +8,14 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons';
 
-const Hero = (props) => {
-  const hero = props.data;
-  const heroId = props.heroId;
+const Hero = (data) => {
+  const hero = data.data;
+  const heroId = data.heroId;
+  const egg = data.egg;
+  const eggData = [];
+  console.log('props');
+
+  const [eggState, setEggState] = useState(false);
 
   const prevClicked = () => {
     let newHeroId = 50;
@@ -20,6 +27,9 @@ const Hero = (props) => {
     console.log('previous was clicked current id is:', hero.id);
     console.log('newHeroId is:', newHeroId);
     heroId(newHeroId);
+    // if (!eggState) {
+    //   setEggState(true);
+    // }
   };
 
   const nextClicked = () => {
@@ -32,16 +42,43 @@ const Hero = (props) => {
     console.log('next was clicked current id is:', hero.id);
     console.log('newHeroId is:', newHeroId);
     heroId(newHeroId);
+    // if (!eggState) {
+    //   setEggState(true);
+    // }
   };
 
-  const randClicked = () => {
+  const randClicked = async () => {
     let newHeroId = Math.floor(
       Math.random() * (Math.floor(723) - Math.ceil(0) + 1) +
         Math.ceil(0)
     );
+    console.log('TESTING EGG:', egg);
 
-    console.log('rand was clicked, last id was:', hero.id);
-    console.log('new random id =', newHeroId);
+    await heroId(newHeroId);
+    eggData.push(egg);
+    console.log('EGGDATA', eggData);
+    // if (!eggState) {
+    //   setEggState(true);
+    // }
+  };
+
+  const showEggImage = () => {
+    let image = '';
+    if (eggState) {
+      return image(
+        <div
+          className='image'
+          style={{ backgroundImage: `url(${egg.image.url})` }}
+        ></div>
+      );
+    } else {
+      return (
+        <div
+          className='image'
+          style={{ backgroundImage: `url(${hero.image.url})` }}
+        ></div>
+      );
+    }
   };
 
   return (
@@ -51,14 +88,15 @@ const Hero = (props) => {
           {hero !== undefined ? hero.name : <LoadingOutlined />}
         </div>
       </div>
-      <div
+      {/* <div
         className='image'
         style={
-          hero !== undefined
+          egg === undefined
             ? { backgroundImage: `url(${hero.image.url})` }
-            : {}
+            : { backgroundImage: `url(${hero.image.url})` }
         }
-      ></div>
+      ></div> */}
+      {showEggImage()}
       <div className='hero-select'>
         <LeftOutlined
           className='icon'
@@ -76,4 +114,10 @@ const Hero = (props) => {
   );
 };
 
-export default Hero;
+const mapReduxStateToProps = (reduxState) => ({
+  hero: reduxState.heroReducer,
+  eggOne: reduxState.eggOneReducer,
+  eggTwo: reduxState.eggTwoReducer,
+});
+
+export default connect(mapReduxStateToProps)(Hero);
