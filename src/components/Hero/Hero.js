@@ -6,23 +6,46 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons';
 
-// const min = Math.ceil(0);
-// const max = Math.floor(520);
-// const rand = Math.floor(Math.random() * (max - min + 1) + min);
+const min = Math.ceil(0);
+const max = Math.floor(723);
+const rand = Math.floor(Math.random() * (max - min + 1) + min);
 
 const Hero = (props) => {
   const hero = props.data;
+  const heroId = props.heroId;
 
   const prevClicked = () => {
-    console.log('previous was clicked');
+    let newHeroId = 50;
+    if (hero.id > 0) {
+      newHeroId = hero.id - 1;
+    } else {
+      newHeroId = 722;
+    }
+    console.log('previous was clicked current id is:', hero.id);
+    console.log('newHeroId is:', newHeroId);
+    heroId(newHeroId);
   };
 
   const nextClicked = () => {
-    console.log('next was clicked');
+    let newHeroId = 50;
+    if (hero.id < 723) {
+      newHeroId = Number(hero.id) + 1;
+    } else {
+      newHeroId = 0;
+    }
+    console.log('next was clicked current id is:', hero.id);
+    console.log('newHeroId is:', newHeroId);
+    heroId(newHeroId);
   };
 
   const randClicked = () => {
-    console.log('rand was clicked');
+    let newHeroId = Math.floor(
+      Math.random() * (Math.floor(723) - Math.ceil(0) + 1) +
+        Math.ceil(0)
+    );
+
+    console.log('rand was clicked, last id was:', hero.id);
+    console.log('new random id =', newHeroId);
   };
 
   return (

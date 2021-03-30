@@ -144,13 +144,11 @@ class Main extends Component {
   };
 
   render() {
-    const eggOneId = (thisId) => {
-      console.log('eggOne', thisId);
-      this.setState({ heroOne: thisId });
+    const eggOneId = (value) => {
+      console.log('eggOne says:', value);
     };
-    const eggTwoId = (thisId) => {
-      console.log('eggTwo', thisId);
-      this.setState({ heroTwo: thisId });
+    const eggTwoId = (value) => {
+      console.log('eggTwo says', value);
     };
 
     const heroOne = STATIC_DATA[0];
