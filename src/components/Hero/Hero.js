@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -8,111 +8,125 @@ import {
   ReloadOutlined,
 } from '@ant-design/icons';
 
-const Hero = (data) => {
-  const hero = data.data;
-  const heroId = data.heroId;
-  const egg = data.egg;
-  const eggData = [];
-  console.log('props');
-
-  const [eggState, setEggState] = useState(false);
-
-  const prevClicked = () => {
-    let newHeroId = 50;
-    if (hero.id > 0) {
-      newHeroId = hero.id - 1;
-    } else {
-      newHeroId = 722;
+class Hero extends Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.eggOne !== prevProps.eggOne) {
+      console.log('UPDATE PROPS', this.props);
     }
-    console.log('previous was clicked current id is:', hero.id);
-    console.log('newHeroId is:', newHeroId);
-    heroId(newHeroId);
-    // if (!eggState) {
-    //   setEggState(true);
-    // }
-  };
-
-  const nextClicked = () => {
-    let newHeroId = 50;
-    if (hero.id < 723) {
-      newHeroId = Number(hero.id) + 1;
-    } else {
-      newHeroId = 0;
+    if (this.props.eggTwo !== prevProps.eggTwo) {
+      console.log('UPDATE PROPS', this.props);
     }
-    console.log('next was clicked current id is:', hero.id);
-    console.log('newHeroId is:', newHeroId);
-    heroId(newHeroId);
-    // if (!eggState) {
-    //   setEggState(true);
-    // }
+  }
+
+  state = {
+    showEgg: false,
   };
 
-  const randClicked = async () => {
-    let newHeroId = Math.floor(
-      Math.random() * (Math.floor(723) - Math.ceil(0) + 1) +
-        Math.ceil(0)
-    );
-    console.log('TESTING EGG:', egg);
-
-    await heroId(newHeroId);
-    eggData.push(egg);
-    console.log('EGGDATA', eggData);
-    // if (!eggState) {
-    //   setEggState(true);
-    // }
+  delayedState = () => {
+    if (!this.state.showEgg) {
+      setTimeout(this.setState({ showEgg: true }), 300);
+    }
   };
 
-  const showEggImage = () => {
-    let image = '';
-    if (eggState) {
-      return image(
+  render() {
+    const hero = this.props.data;
+    const heroId = this.props.heroId;
+    const egg = this.props.egg;
+    const eggData = [];
+
+    const randClicked = async () => {
+      let newHeroId = Math.floor(
+        Math.random() * (Math.floor(723) - Math.ceil(0) + 1) +
+          Math.ceil(0)
+      );
+      console.log('TESTING EGG:', egg);
+
+      await heroId(newHeroId);
+      eggData.push(egg);
+      console.log('EGGDATA', eggData);
+      this.delayedState();
+    };
+
+    const prevClicked = () => {
+      let newHeroId = 731;
+      const trueEgg = this.state.showEgg;
+      if (trueEgg && egg.id > 1) {
+        newHeroId = egg.id - 1;
+      }
+      if (!trueEgg && hero.id > 1) {
+        newHeroId = hero.id - 1;
+      }
+      if (trueEgg && egg.id === 1) {
+        newHeroId = 731;
+      }
+      if (!trueEgg && hero.id === 1) {
+        newHeroId = 731;
+      }
+      console.log('previous was clicked current id is:', hero.id);
+      console.log('newHeroId is:', newHeroId);
+      heroId(newHeroId);
+      eggData.push(egg);
+      console.log('EGGDATA', eggData);
+      this.delayedState();
+    };
+
+    const nextClicked = () => {
+      let newHeroId = 1;
+      const trueEgg = this.state.showEgg;
+      if (trueEgg && egg.id < 731) {
+        newHeroId = Number(egg.id) + 1;
+      }
+      if (!trueEgg && hero.id < 731) {
+        newHeroId = Number(hero.id) + 1;
+      }
+      if (trueEgg && egg.id === 731) {
+        newHeroId = Number(1);
+      }
+      if (!trueEgg && hero.id === 731) {
+        newHeroId = Number(1);
+      }
+      console.log('next was clicked current id is:', egg.id);
+      console.log('newHeroId is:', newHeroId);
+      eggData.push(egg);
+      console.log('EGGDATA', eggData);
+      heroId(newHeroId);
+      this.delayedState();
+    };
+    return (
+      <div className='image-primary'>
+        <div className='main-header-container'>
+          <div className='title'>
+            {this.state.showEgg ? egg.name : hero.name}
+          </div>
+        </div>
         <div
           className='image'
-          style={{ backgroundImage: `url(${egg.image.url})` }}
+          style={
+            !this.state.showEgg
+              ? { backgroundImage: `url(${hero.image.url})` }
+              : {
+                  backgroundImage: `url(${egg.image.url})`,
+                }
+          }
         ></div>
-      );
-    } else {
-      return (
-        <div
-          className='image'
-          style={{ backgroundImage: `url(${hero.image.url})` }}
-        ></div>
-      );
-    }
-  };
 
-  return (
-    <div className='image-primary'>
-      <div className='main-header-container'>
-        <div className='title'>
-          {hero !== undefined ? hero.name : <LoadingOutlined />}
+        <div className='hero-select'>
+          <LeftOutlined
+            className='icon'
+            onClick={prevClicked}
+            style={{ marginRight: 24 }}
+          />
+          <ReloadOutlined className='icon' onClick={randClicked} />
+          <RightOutlined
+            className='icon'
+            onClick={nextClicked}
+            style={{ marginLeft: 24 }}
+          />
         </div>
       </div>
-      {/* <div
-        className='image'
-        style={
-          egg === undefined
-            ? { backgroundImage: `url(${hero.image.url})` }
-            : { backgroundImage: `url(${hero.image.url})` }
-        }
-      ></div> */}
-      {showEggImage()}
-      <div className='hero-select'>
-        <LeftOutlined
-          className='icon'
-          onClick={prevClicked}
-          style={{ marginRight: 24 }}
-        />
-        <ReloadOutlined className='icon' onClick={randClicked} />
-        <RightOutlined
-          className='icon'
-          onClick={nextClicked}
-          style={{ marginLeft: 24 }}
-        />
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapReduxStateToProps = (reduxState) => ({
   hero: reduxState.heroReducer,
