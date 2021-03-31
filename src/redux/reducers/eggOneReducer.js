@@ -1,4 +1,4 @@
-const eggOneReducer = (state = {}, action) => {
+const eggOneReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_EGGONE':
       return action.payload;

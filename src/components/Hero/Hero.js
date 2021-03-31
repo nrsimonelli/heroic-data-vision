@@ -23,9 +23,7 @@ class Hero extends Component {
   };
 
   delayedState = () => {
-    if (!this.state.showEgg) {
-      setTimeout(this.setState({ showEgg: true }), 300);
-    }
+    this.setState({ showEgg: true });
   };
 
   render() {

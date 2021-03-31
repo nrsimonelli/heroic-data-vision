@@ -117,17 +117,19 @@ class Main extends Component {
     console.log('hello from Main.js');
     this.getHero(50);
     this.setGraphType();
+    this.delayRender();
     this.eggOneId(70);
     this.eggTwoId(720);
-    console.log('props', this.props);
-    console.log('hero?', this.props.hero);
-    console.log('graph', this.props.graph);
   }
 
   setGraphType = () => {
     this.props.dispatch({
       type: 'SET_LINE',
     });
+  };
+
+  delayRender = () => {
+    setTimeout(this.setState({ loading: false }), 5000);
   };
 
   getHero = (id) => {
@@ -152,9 +154,9 @@ class Main extends Component {
       this.props.dispatch({ type: 'FETCH_RADAR' });
     }
   };
-  eggOneId = async (value) => {
+  eggOneId = (value) => {
     const heroId = value;
-    await this.props.dispatch({
+    this.props.dispatch({
       type: 'FETCH_EGGONE',
       params: { heroId },
     });
@@ -169,6 +171,10 @@ class Main extends Component {
     console.log('eggTwo says', value);
   };
 
+  state = {
+    loading: true,
+  };
+
   render() {
     const heroOne = STATIC_DATA[0];
     const heroTwo = STATIC_DATA[1];
@@ -180,55 +186,61 @@ class Main extends Component {
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          <Hero
-            data={heroOne}
-            egg={eggOneData}
-            heroId={this.eggOneId}
-          />
-          <Hero
-            data={heroTwo}
-            egg={eggTwoData}
-            heroId={this.eggTwoId}
-          />
-          <div className='graph-secondary'>
-            <div
-              className='switch-icon'
-              onClick={this.changeGraphType}
-            >
-              {this.props.graph === undefined ? (
-                <LoadingOutlined />
-              ) : type === 'BAR' ? (
-                <RadarChartOutlined
-                  style={{ fontSize: 24 }}
+          {eggOneData && eggTwoData ? (
+            <>
+              <Hero
+                data={heroOne}
+                egg={eggOneData}
+                heroId={this.eggOneId}
+              />
+              <Hero
+                data={heroTwo}
+                egg={eggTwoData}
+                heroId={this.eggTwoId}
+              />
+              <div className='graph-secondary'>
+                <div
+                  className='switch-icon'
                   onClick={this.changeGraphType}
-                />
-              ) : type === 'RADAR' ? (
-                <LineChartOutlined
-                  style={{ fontSize: 24 }}
-                  onClick={this.changeGraphType}
-                />
-              ) : type === 'LINE' ? (
-                <BarChartOutlined
-                  style={{ fontSize: 24 }}
-                  onClick={this.changeGraphType}
-                />
-              ) : (
-                <LoadingOutlined />
-              )}
-            </div>
+                >
+                  {this.state.loading ? (
+                    <LoadingOutlined />
+                  ) : !this.state.loading && type === 'BAR' ? (
+                    <RadarChartOutlined
+                      style={{ fontSize: 24 }}
+                      onClick={this.changeGraphType}
+                    />
+                  ) : !this.state.loading && type === 'RADAR' ? (
+                    <LineChartOutlined
+                      style={{ fontSize: 24 }}
+                      onClick={this.changeGraphType}
+                    />
+                  ) : !this.state.loading && type === 'LINE' ? (
+                    <BarChartOutlined
+                      style={{ fontSize: 24 }}
+                      onClick={this.changeGraphType}
+                    />
+                  ) : (
+                    <LoadingOutlined />
+                  )}
+                </div>
 
-            {this.props.graph === undefined ? (
-              <LoadingOutlined style={{ fontSize: 64 }} />
-            ) : type === 'LINE' ? (
-              <GraphArea eggData={eggData} data={STATIC_DATA} />
-            ) : type === 'RADAR' ? (
-              <GraphRadar eggData={eggData} data={STATIC_DATA} />
-            ) : type === 'BAR' ? (
-              <GraphBar eggData={eggData} data={STATIC_DATA} />
-            ) : (
-              <LoadingOutlined />
-            )}
-          </div>
+                {this.state.loading ? (
+                  <LoadingOutlined style={{ fontSize: 64 }} />
+                ) : !this.state.loading && type === 'LINE' ? (
+                  <GraphArea eggData={eggData} data={STATIC_DATA} />
+                ) : !this.state.loading && type === 'RADAR' ? (
+                  <GraphRadar eggData={eggData} data={STATIC_DATA} />
+                ) : !this.state.loading && type === 'BAR' ? (
+                  <GraphBar eggData={eggData} data={STATIC_DATA} />
+                ) : (
+                  <LoadingOutlined />
+                )}
+              </div>
+            </>
+          ) : (
+            <LoadingOutlined />
+          )}
         </div>
       </div>
     );
