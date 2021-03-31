@@ -12,8 +12,12 @@
 
 ### `yarn start`
 
-### create your own `dotenv` with the following variables
+### `dotenv`
 
-> API_URL = `https://superheroapi.com/api/`
+In order to run the API successfully you will need to create your own env file with the following variables
 
-> API_KEY = (you will be able to generate a token through superhero API, `https://superheroapi.com/index.html` and store that here.
+> API_URL => `https://superheroapi.com/api/`
+
+> API_KEY => (you will be able to generate a token through superhero API, `https://superheroapi.com/index.html` and store that here.
+
+Once you have done that you will be ready to run the applicaiton via yarn run server and yarn start.
