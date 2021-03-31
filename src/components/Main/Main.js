@@ -113,10 +113,12 @@ const STATIC_DATA = [
 ];
 
 class Main extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     console.log('hello from Main.js');
-    await this.getHero(50);
-    await this.setGraphType();
+    this.getHero(50);
+    this.setGraphType();
+    this.eggOneId(70);
+    this.eggTwoId(720);
     console.log('props', this.props);
     console.log('hero?', this.props.hero);
     console.log('graph', this.props.graph);
@@ -150,35 +152,44 @@ class Main extends Component {
       this.props.dispatch({ type: 'FETCH_RADAR' });
     }
   };
+  eggOneId = async (value) => {
+    const heroId = value;
+    await this.props.dispatch({
+      type: 'FETCH_EGGONE',
+      params: { heroId },
+    });
+    console.log('eggOne says:', value);
+  };
+  eggTwoId = (value) => {
+    const heroId = value;
+    this.props.dispatch({
+      type: 'FETCH_EGGTWO',
+      params: { heroId },
+    });
+    console.log('eggTwo says', value);
+  };
 
   render() {
-    const eggOneId = async (value) => {
-      const heroId = value;
-      await this.props.dispatch({
-        type: 'FETCH_EGGONE',
-        params: { heroId },
-      });
-      console.log('eggOne says:', value);
-    };
-    const eggTwoId = (value) => {
-      const heroId = value;
-      this.props.dispatch({
-        type: 'FETCH_EGGTWO',
-        params: { heroId },
-      });
-      console.log('eggTwo says', value);
-    };
-
     const heroOne = STATIC_DATA[0];
     const heroTwo = STATIC_DATA[1];
     const type = this.props.graph.type;
     const eggOneData = this.props.eggOne;
+    const eggTwoData = this.props.eggTwo;
+    const eggData = [eggOneData, eggTwoData];
 
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          <Hero data={heroOne} egg={eggOneData} heroId={eggOneId} />
-          <Hero data={heroTwo} egg={''} heroId={eggTwoId} />
+          <Hero
+            data={heroOne}
+            egg={eggOneData}
+            heroId={this.eggOneId}
+          />
+          <Hero
+            data={heroTwo}
+            egg={eggTwoData}
+            heroId={this.eggTwoId}
+          />
           <div className='graph-secondary'>
             <div
               className='switch-icon'
@@ -205,26 +216,15 @@ class Main extends Component {
                 <LoadingOutlined />
               )}
             </div>
+
             {this.props.graph === undefined ? (
               <LoadingOutlined style={{ fontSize: 64 }} />
             ) : type === 'LINE' ? (
-              <GraphArea
-                heroOne={heroOne}
-                heroTwo={heroTwo}
-                data={STATIC_DATA}
-              />
+              <GraphArea eggData={eggData} data={STATIC_DATA} />
             ) : type === 'RADAR' ? (
-              <GraphRadar
-                heroOne={heroOne}
-                heroTwo={heroTwo}
-                data={STATIC_DATA}
-              />
+              <GraphRadar eggData={eggData} data={STATIC_DATA} />
             ) : type === 'BAR' ? (
-              <GraphBar
-                heroOne={heroOne}
-                heroTwo={heroTwo}
-                data={STATIC_DATA}
-              />
+              <GraphBar eggData={eggData} data={STATIC_DATA} />
             ) : (
               <LoadingOutlined />
             )}

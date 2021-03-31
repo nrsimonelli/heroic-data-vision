@@ -11,9 +11,9 @@ import {
 } from 'recharts';
 
 const GraphBar = (props) => {
-  const heroOne = props.heroOne;
-  const heroTwo = props.heroTwo;
-  const hero = props.data;
+  const heroOne = props.eggData[0];
+  const heroTwo = props.eggData[1];
+  const hero = props.eggData;
 
   const comparePowerStats = Object.keys(hero[0].powerstats);
   const result = [];
@@ -37,22 +37,14 @@ const GraphBar = (props) => {
           <Bar
             type='monotone'
             dataKey={heroOne.name}
-            fill={
-              heroOne.biography.alignment === 'good'
-                ? '#1890ff'
-                : '#722ed1'
-            }
-            fillOpacity={0.9}
+            fill={'#1890ff'}
+            fillOpacity={0.8}
           />
           <Bar
             type='monotone'
             dataKey={heroTwo.name}
-            fill={
-              heroTwo.biography.alignment === 'good'
-                ? '#fa8c16'
-                : '#fa541c'
-            }
-            fillOpacity={0.9}
+            fill={'#f5222d'}
+            fillOpacity={0.8}
           />
         </BarChart>
       </ResponsiveContainer>
