@@ -25,7 +25,6 @@ const GraphArea = (props) => {
   comparePowerStats.forEach(function (powerstat) {
     const statInfo = { powerstat };
     hero.forEach(function (heroInfo) {
-      console.log(heroInfo);
       statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
     });
     result.push(statInfo);

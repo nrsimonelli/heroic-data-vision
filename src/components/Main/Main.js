@@ -114,7 +114,6 @@ const STATIC_DATA = [
 
 class Main extends Component {
   componentDidMount() {
-    console.log('hello from Main.js');
     this.getHero(50);
     this.setGraphType();
     this.delayRender();
@@ -129,11 +128,10 @@ class Main extends Component {
   };
 
   delayRender = () => {
-    setTimeout(this.setState({ loading: false }), 5000);
+    this.setState({ loading: false });
   };
 
   getHero = (id) => {
-    console.log('getHero id', id);
     const heroId = id;
     this.props.dispatch({
       type: 'FETCH_HERO',

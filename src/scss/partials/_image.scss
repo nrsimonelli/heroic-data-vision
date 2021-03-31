@@ -5,7 +5,7 @@
   flex-direction: row;
   div {
     @include margin-sides($margin-half);
-    @include hocus {
+    &:hover {
       cursor: pointer;
     }
   }

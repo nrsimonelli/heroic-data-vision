@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {
   LeftOutlined,
   RightOutlined,
-  LoadingOutlined,
   ReloadOutlined,
 } from '@ant-design/icons';
 
@@ -37,11 +36,9 @@ class Hero extends Component {
         Math.random() * (Math.floor(723) - Math.ceil(0) + 1) +
           Math.ceil(0)
       );
-      console.log('TESTING EGG:', egg);
 
       await heroId(newHeroId);
       eggData.push(egg);
-      console.log('EGGDATA', eggData);
       this.delayedState();
     };
 
@@ -60,11 +57,8 @@ class Hero extends Component {
       if (!trueEgg && hero.id === 1) {
         newHeroId = 731;
       }
-      console.log('previous was clicked current id is:', hero.id);
-      console.log('newHeroId is:', newHeroId);
       heroId(newHeroId);
       eggData.push(egg);
-      console.log('EGGDATA', eggData);
       this.delayedState();
     };
 
@@ -83,10 +77,7 @@ class Hero extends Component {
       if (!trueEgg && hero.id === 731) {
         newHeroId = Number(1);
       }
-      console.log('next was clicked current id is:', egg.id);
-      console.log('newHeroId is:', newHeroId);
       eggData.push(egg);
-      console.log('EGGDATA', eggData);
       heroId(newHeroId);
       this.delayedState();
     };
