@@ -11,10 +11,9 @@ import {
 } from 'recharts';
 
 const GraphRadar = (props) => {
-  const heroOne = props.heroOne;
-  const heroTwo = props.heroTwo;
-
-  const hero = props.data;
+  const heroOne = props.eggData[0];
+  const heroTwo = props.eggData[1];
+  const hero = props.eggData;
 
   const comparePowerStats = Object.keys(hero[0].powerstats);
   const result = [];
@@ -40,32 +39,16 @@ const GraphRadar = (props) => {
           <Radar
             name={heroOne.name}
             dataKey={heroOne.name}
-            stroke={
-              heroOne.biography.alignment === 'good'
-                ? '#1890ff'
-                : '#722ed1'
-            }
-            fill={
-              heroOne.biography.alignment === 'good'
-                ? '#1890ff'
-                : '#722ed1'
-            }
+            stroke={'#1890ff'}
+            fill={'#1890ff'}
             fillOpacity={0.5}
             activeDot={{ r: 6 }}
           />
           <Radar
             name={heroTwo.name}
             dataKey={heroTwo.name}
-            stroke={
-              props.heroTwo.biography.alignment === 'good'
-                ? '#fa8c16'
-                : '#fa541c'
-            }
-            fill={
-              heroTwo.biography.alignment === 'good'
-                ? '#fa8c16'
-                : '#fa541c'
-            }
+            stroke={'#f5222d'}
+            fill={'#f5222d'}
             fillOpacity={0.5}
             activeDot={{ r: 6 }}
           />

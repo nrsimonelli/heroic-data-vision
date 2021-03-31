@@ -175,6 +175,7 @@ class Main extends Component {
     const type = this.props.graph.type;
     const eggOneData = this.props.eggOne;
     const eggTwoData = this.props.eggTwo;
+    const eggData = [eggOneData, eggTwoData];
 
     return (
       <div className='main-root'>
@@ -215,26 +216,15 @@ class Main extends Component {
                 <LoadingOutlined />
               )}
             </div>
+
             {this.props.graph === undefined ? (
               <LoadingOutlined style={{ fontSize: 64 }} />
             ) : type === 'LINE' ? (
-              <GraphArea
-                heroOne={heroOne}
-                heroTwo={heroTwo}
-                data={STATIC_DATA}
-              />
+              <GraphArea eggData={eggData} data={STATIC_DATA} />
             ) : type === 'RADAR' ? (
-              <GraphRadar
-                heroOne={heroOne}
-                heroTwo={heroTwo}
-                data={STATIC_DATA}
-              />
+              <GraphRadar eggData={eggData} data={STATIC_DATA} />
             ) : type === 'BAR' ? (
-              <GraphBar
-                heroOne={heroOne}
-                heroTwo={heroTwo}
-                data={STATIC_DATA}
-              />
+              <GraphBar eggData={eggData} data={STATIC_DATA} />
             ) : (
               <LoadingOutlined />
             )}
