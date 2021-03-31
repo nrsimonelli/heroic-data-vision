@@ -15,4 +15,5 @@
 ### create your own `dotenv` with the following variables
 
 > API_URL (https://superheroapi.com/api)
+
 > API_KEY (you can get this token by creating a free account)
