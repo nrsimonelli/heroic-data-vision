@@ -3,8 +3,8 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/', (req, res) => {
-  const MY_URL = process.env.API_URL;
-  const MY_KEY = process.env.API_KEY;
+  const MY_URL = process.env.URL;
+  const MY_KEY = process.env.TOKEN;
   const INEEDTHISID = req.query.heroId;
   const FULL_PATH = `${MY_URL}${MY_KEY}/${INEEDTHISID}`;
   axios
@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/egg1', (req, res, next) => {
-  const MY_URL = process.env.API_URL;
-  const MY_KEY = process.env.API_KEY;
+  const MY_URL = process.env.URL;
+  const MY_KEY = process.env.TOKEN;
   const INEEDTHISID = req.query.heroId;
   const FULL_PATH = `${MY_URL}${MY_KEY}/${INEEDTHISID}`;
 
@@ -34,8 +34,8 @@ router.get('/egg1', (req, res, next) => {
 });
 
 router.get('/egg2', (req, res, next) => {
-  const MY_URL = process.env.API_URL;
-  const MY_KEY = process.env.API_KEY;
+  const MY_URL = process.env.URL;
+  const MY_KEY = process.env.TOKEN;
   const INEEDTHISID = req.query.heroId;
   const FULL_PATH = `${MY_URL}${MY_KEY}/${INEEDTHISID}`;
 
