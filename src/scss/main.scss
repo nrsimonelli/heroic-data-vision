@@ -9,6 +9,17 @@
   flex-direction: column;
 }
 
+.loading-spinner {
+  height: 75vh;
+  width: 100%;
+  align-self: center;
+  margin-top: auto;
+  display: flex;
+  @include justify-align(center, center);
+  font-size: 126px;
+  color: $color-accent;
+}
+
 .main-header-container {
   width: 100%;
   max-width: $max-width-global;

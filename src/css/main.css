@@ -239,8 +239,7 @@ a:hover {
 .footer-root {
   height: 60px;
   width: 100%;
-  background-color: #1890ff;
-  color: rgba(255, 255, 255, 0.85);
+  background-color: #2f54eb;
 }
 .footer-root .container {
   height: 100%;
@@ -322,6 +321,18 @@ a:hover {
   min-height: 500px;
   display: flex;
   flex-direction: column;
+}
+
+.loading-spinner {
+  height: 75vh;
+  width: 100%;
+  align-self: center;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 126px;
+  color: #f5222d;
 }
 
 .main-header-container {

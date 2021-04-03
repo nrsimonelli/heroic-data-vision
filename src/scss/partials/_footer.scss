@@ -2,8 +2,7 @@
 
 .footer-root {
   @include dimensions(60px, 100%);
-  background-color: $color-secondary;
-  color: $white-85;
+  background-color: $color-primary;
   .container {
     height: 100%;
     @include flex-row;

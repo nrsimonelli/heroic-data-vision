@@ -237,7 +237,9 @@ class Main extends Component {
               </div>
             </>
           ) : (
-            <LoadingOutlined />
+            <div className='loading-spinner'>
+              <LoadingOutlined />
+            </div>
           )}
         </div>
       </div>
