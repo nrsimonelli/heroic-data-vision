@@ -114,7 +114,6 @@ const STATIC_DATA = [
 
 class Main extends Component {
   componentDidMount() {
-    this.getHero(50);
     this.setGraphType();
     this.delayRender();
     this.eggOneId(70);
@@ -169,10 +168,6 @@ class Main extends Component {
     console.log('eggTwo says', value);
   };
 
-  state = {
-    loading: true,
-  };
-
   render() {
     const heroOne = STATIC_DATA[0];
     const heroTwo = STATIC_DATA[1];
@@ -186,34 +181,24 @@ class Main extends Component {
         <div className='main-content-container'>
           {eggOneData && eggTwoData ? (
             <>
-              <Hero
-                data={heroOne}
-                egg={eggOneData}
-                heroId={this.eggOneId}
-              />
-              <Hero
-                data={heroTwo}
-                egg={eggTwoData}
-                heroId={this.eggTwoId}
-              />
+              <Hero egg={eggOneData} heroId={this.eggOneId} />
+              <Hero egg={eggTwoData} heroId={this.eggTwoId} />
               <div className='graph-secondary'>
                 <div
                   className='switch-icon'
                   onClick={this.changeGraphType}
                 >
-                  {this.state.loading ? (
-                    <LoadingOutlined />
-                  ) : !this.state.loading && type === 'BAR' ? (
+                  {type === 'BAR' ? (
                     <RadarChartOutlined
                       style={{ fontSize: 24 }}
                       onClick={this.changeGraphType}
                     />
-                  ) : !this.state.loading && type === 'RADAR' ? (
+                  ) : type === 'RADAR' ? (
                     <LineChartOutlined
                       style={{ fontSize: 24 }}
                       onClick={this.changeGraphType}
                     />
-                  ) : !this.state.loading && type === 'LINE' ? (
+                  ) : type === 'LINE' ? (
                     <BarChartOutlined
                       style={{ fontSize: 24 }}
                       onClick={this.changeGraphType}
@@ -248,7 +233,6 @@ class Main extends Component {
 }
 
 const mapReduxStateToProps = (reduxState) => ({
-  hero: reduxState.heroReducer,
   eggOne: reduxState.eggOneReducer,
   eggTwo: reduxState.eggTwoReducer,
   graph: reduxState.graphTypeReducer,
