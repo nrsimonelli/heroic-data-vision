@@ -130,14 +130,6 @@ class Main extends Component {
     this.setState({ loading: false });
   };
 
-  getHero = (id) => {
-    const heroId = id;
-    this.props.dispatch({
-      type: 'FETCH_HERO',
-      params: { heroId },
-    });
-  };
-
   changeGraphType = () => {
     const type = this.props.graph.type;
     console.log('type', type);
@@ -169,8 +161,6 @@ class Main extends Component {
   };
 
   render() {
-    const heroOne = STATIC_DATA[0];
-    const heroTwo = STATIC_DATA[1];
     const type = this.props.graph.type;
     const eggOneData = this.props.eggOne;
     const eggTwoData = this.props.eggTwo;
@@ -208,13 +198,11 @@ class Main extends Component {
                   )}
                 </div>
 
-                {this.state.loading ? (
-                  <LoadingOutlined style={{ fontSize: 64 }} />
-                ) : !this.state.loading && type === 'LINE' ? (
+                {type === 'LINE' ? (
                   <GraphArea eggData={eggData} data={STATIC_DATA} />
-                ) : !this.state.loading && type === 'RADAR' ? (
+                ) : type === 'RADAR' ? (
                   <GraphRadar eggData={eggData} data={STATIC_DATA} />
-                ) : !this.state.loading && type === 'BAR' ? (
+                ) : type === 'BAR' ? (
                   <GraphBar eggData={eggData} data={STATIC_DATA} />
                 ) : (
                   <LoadingOutlined />
