@@ -309,8 +309,6 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
-  height: sm;
-  width: calc(sm * 0.7);
   height: 230px;
   width: calc(230px * 0.7);
   background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
