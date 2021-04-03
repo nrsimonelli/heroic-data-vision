@@ -110,7 +110,7 @@ const STATIC_DATA = [
         'https://www.superherodb.com/pictures2/portraits/10/100/807.jpg',
     },
   },
-]; //starting heroes
+]; // starting heroes
 
 class Main extends Component {
   componentDidMount() {
