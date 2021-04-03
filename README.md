@@ -8,16 +8,18 @@
 
 ## How to start
 
-### create a `.env`
+### download zip or fork and clone project repository
 
-In order to run the API successfully you will need to create your own dotenv file with the following variables
+### create a `.env` in the root of your project folder
 
-> API_URL => `https://superheroapi.com/api/`
+In order to run the API successfully you will need to create your own dotenv file with the following variables:
 
-> API_KEY => (you will need an access token which you can get from superhero API, `https://superheroapi.com/index.html` and log that here)
+> URL => `https://superheroapi.com/api/`
 
-### Use `yarn` to install dependencies
+> TOKEN => (you will need an access token which you can get from superhero API, `https://superheroapi.com/index.html` and log that here)
 
-### `yarn run server`
+make sure this file is ignored by git if you plan on pushing this repo anywhere.
 
-### `yarn start`
+### Use `yarn add` to install dependencies
+
+### Use `yarn start` to run application
