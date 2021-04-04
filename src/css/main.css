@@ -185,8 +185,8 @@ code {
 }
 
 a {
-  color: #1890ff;
-  text-decoration: underline;
+  color: inherit;
+  text-decoration: none;
 }
 a:hover {
   text-decoration: none;
@@ -315,6 +315,55 @@ a:hover {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
 
+@media (max-width: 480px) {
+  .image-primary {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .image-primary .image,
+.image-primary .image-description,
+.image-primary .graph {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.graph-secondary {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  height: 40vh;
+  width: 100vw;
+  background-color: #fafafa;
+  min-height: calc(720px * 0.45);
+}
+.graph-secondary .graph {
+  margin-left: 0;
+  margin-right: 0;
+  width: 90%;
+  height: 70%;
+}
+
+.hero-select {
+  margin-top: 24px;
+}
+
+.switch-icon {
+  align-self: center;
+  margin-bottom: 12px;
+}
+
+.icon:hover,
+.switch-icon:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+
 .main-root {
   flex: 1 0 auto;
   width: 100vw;
@@ -367,65 +416,6 @@ a:hover {
   margin-right: auto;
   max-width: 1140px;
   width: 100%;
-}
-
-.graph-secondary {
-  height: 40vh;
-  width: 50%;
-  min-height: calc(720px * 0.45);
-}
-
-.graph-secondary {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0;
-  height: 40vh;
-  width: 100vw;
-  background-color: #fafafa;
-}
-.graph-secondary .graph {
-  margin-left: 0;
-  margin-right: 0;
-  width: 90%;
-  height: 70%;
-}
-
-.switch-icon {
-  align-self: center;
-  margin-bottom: 12px;
-}
-
-@media (max-width: 480px) {
-  .image-primary {
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .image-primary .image,
-.image-primary .image-description,
-.image-primary .graph {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-.hero-select {
-  margin-top: 24px;
-}
-
-.icon:hover,
-.switch-icon:hover {
-  cursor: pointer;
-  transform: scale(1.5);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 /*# sourceMappingURL=main.css.map */

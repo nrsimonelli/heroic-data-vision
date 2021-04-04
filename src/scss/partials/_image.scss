@@ -36,3 +36,19 @@
     @include shadow(2);
   }
 }
+
+@include breakpoint-max(xs) {
+  .image-primary {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    .image,
+    .image-description,
+    .graph {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

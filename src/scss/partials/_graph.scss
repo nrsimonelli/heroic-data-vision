@@ -1,0 +1,33 @@
+@use '../abstracts/' as *;
+
+.graph-secondary {
+  @include flex-col();
+  @include justify-align(center, center);
+  margin-top: 0;
+  height: 40vh;
+  width: 100vw;
+  background-color: $gray-02;
+  min-height: calc(720px * 0.45);
+  .graph {
+    @include margin-sides(0);
+    width: 90%;
+    height: 70%;
+  }
+}
+
+.hero-select {
+  margin-top: $margin-global;
+}
+
+.switch-icon {
+  align-self: center;
+  margin-bottom: $margin-half;
+}
+
+.icon,
+.switch-icon {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+}
