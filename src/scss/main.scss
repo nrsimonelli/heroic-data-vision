@@ -45,58 +45,9 @@
   width: 100%;
 }
 
-.graph-secondary {
-  @include dimensions(40vh, 50%);
-  min-height: calc(720px * 0.45);
-}
-
-.graph-secondary {
-  @include flex-col();
-  @include justify-align(center, center);
-  margin-top: 0;
-  height: 40vh;
-  width: 100vw;
-  background-color: $gray-02;
-  .graph {
-    @include margin-sides(0);
-    width: 90%;
-    height: 70%;
+.popover {
+  width: 230px;
+  p {
+    @include text-size(12px, 2);
   }
-}
-.switch-icon {
-  align-self: center;
-  margin-bottom: $margin-half;
-}
-
-@include breakpoint-max(xs) {
-  .image-primary {
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    .image,
-    .image-description,
-    .graph {
-      margin-left: 0;
-      margin-right: 0;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-}
-
-.hero-select {
-  margin-top: $margin-global;
-}
-
-.icon,
-.switch-icon {
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.5);
-  }
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }

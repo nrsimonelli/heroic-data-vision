@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Popover } from 'antd';
 
 import {
   LeftOutlined,
@@ -17,19 +18,39 @@ class Hero extends Component {
     }
   }
 
-  state = {
-    showEgg: false,
+  handleVisibleChange = (showPopover) => {
+    this.setState({ showPopover });
   };
 
-  delayedState = () => {
-    this.setState({ showEgg: true });
+  mouseOver = () => {
+    this.setState({
+      showPopover: true,
+    });
+  };
+
+  mouseOut = () => {
+    this.setState({
+      showPopover: false,
+    });
+  };
+
+  state = {
+    showPopover: false,
   };
 
   render() {
-    const hero = this.props.data;
     const heroId = this.props.heroId;
     const egg = this.props.egg;
     const eggData = [];
+
+    const {
+      biography: {
+        'full-name': fullName,
+        'place-of-birth': placeOfBirth,
+        'first-appearance': firstAppearance,
+      },
+      appearance: { 'eye-color': eyeColor },
+    } = egg;
 
     const randClicked = async () => {
       let newHeroId = Math.floor(
@@ -39,65 +60,70 @@ class Hero extends Component {
 
       await heroId(newHeroId);
       eggData.push(egg);
-      this.delayedState();
     };
 
     const prevClicked = () => {
       let newHeroId = 731;
-      const trueEgg = this.state.showEgg;
-      if (trueEgg && egg.id > 1) {
+      if (egg.id > 1) {
         newHeroId = egg.id - 1;
       }
-      if (!trueEgg && hero.id > 1) {
-        newHeroId = hero.id - 1;
-      }
-      if (trueEgg && egg.id === 1) {
+
+      if (egg.id === 1) {
         newHeroId = 731;
       }
-      if (!trueEgg && hero.id === 1) {
-        newHeroId = 731;
-      }
+
       heroId(newHeroId);
       eggData.push(egg);
-      this.delayedState();
     };
 
     const nextClicked = () => {
       let newHeroId = 1;
-      const trueEgg = this.state.showEgg;
-      if (trueEgg && egg.id < 731) {
+      if (egg.id < 731) {
         newHeroId = Number(egg.id) + 1;
       }
-      if (!trueEgg && hero.id < 731) {
-        newHeroId = Number(hero.id) + 1;
-      }
-      if (trueEgg && egg.id === 731) {
+
+      if (egg.id === 731) {
         newHeroId = Number(1);
       }
-      if (!trueEgg && hero.id === 731) {
-        newHeroId = Number(1);
-      }
+
       eggData.push(egg);
       heroId(newHeroId);
-      this.delayedState();
     };
+
+    const content = (
+      <div>
+        <p>
+          {egg.appearance.race} {egg.appearance.gender}, {eyeColor}{' '}
+          eyes, {egg.appearance.height[0]}, {egg.appearance.weight[0]}
+        </p>
+        <p>Birthplace: {placeOfBirth}</p>
+        <p>First appearance {firstAppearance}</p>
+        <p>Profession: {egg.work.occupation}</p>
+      </div>
+    );
+
+    const title = <div>{fullName}</div>;
+
     return (
       <div className='image-primary'>
         <div className='main-header-container'>
-          <div className='title'>
-            {this.state.showEgg ? egg.name : hero.name}
-          </div>
+          <div className='title'>{egg.name}</div>
         </div>
-        <div
-          className='image'
-          style={
-            !this.state.showEgg
-              ? { backgroundImage: `url(${hero.image.url})` }
-              : {
-                  backgroundImage: `url(${egg.image.url})`,
-                }
-          }
-        ></div>
+        <Popover
+          placement='right'
+          content={content}
+          title={title}
+          overlayClassName='popover'
+          trigger='hover'
+          onVisibleChange={this.handleVisibleChange}
+        >
+          <div
+            className='image'
+            style={{
+              backgroundImage: `url(${egg.image.url})`,
+            }}
+          ></div>
+        </Popover>
 
         <div className='hero-select'>
           <LeftOutlined
@@ -118,7 +144,6 @@ class Hero extends Component {
 }
 
 const mapReduxStateToProps = (reduxState) => ({
-  hero: reduxState.heroReducer,
   eggOne: reduxState.eggOneReducer,
   eggTwo: reduxState.eggTwoReducer,
 });

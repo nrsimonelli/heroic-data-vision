@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import 'antd/dist/antd.css';
 import '../../css/main.css';
 
 import Nav from '../Nav/Nav';

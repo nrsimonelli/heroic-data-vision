@@ -6,7 +6,7 @@ html {
 
 body {
   font-family: 'Roboto', 'Oxygen', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+    'Helvetica Neue', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -55,9 +55,8 @@ code {
 }
 
 a {
-  color: $color-default;
-  text-decoration: underline;
-
+  color: $white-85;
+  text-decoration: none;
   &:hover {
     text-decoration: none;
   }
