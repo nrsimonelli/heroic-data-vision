@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Popover } from 'antd';
 
 import {
   LeftOutlined,
@@ -17,10 +18,39 @@ class Hero extends Component {
     }
   }
 
+  handleVisibleChange = (showPopover) => {
+    this.setState({ showPopover });
+  };
+
+  mouseOver = () => {
+    this.setState({
+      showPopover: true,
+    });
+  };
+
+  mouseOut = () => {
+    this.setState({
+      showPopover: false,
+    });
+  };
+
+  state = {
+    showPopover: false,
+  };
+
   render() {
     const heroId = this.props.heroId;
     const egg = this.props.egg;
     const eggData = [];
+
+    const {
+      biography: {
+        'full-name': fullName,
+        'place-of-birth': placeOfBirth,
+        'first-appearance': firstAppearance,
+      },
+      appearance: { 'eye-color': eyeColor },
+    } = egg;
 
     const randClicked = async () => {
       let newHeroId = Math.floor(
@@ -60,17 +90,40 @@ class Hero extends Component {
       heroId(newHeroId);
     };
 
+    const content = (
+      <div>
+        <p>
+          {egg.appearance.race} {egg.appearance.gender}, {eyeColor}{' '}
+          eyes, {egg.appearance.height[0]}, {egg.appearance.weight[0]}
+        </p>
+        <p>Birthplace: {placeOfBirth}</p>
+        <p>First appearance {firstAppearance}</p>
+        <p>Profession: {egg.work.occupation}</p>
+      </div>
+    );
+
+    const title = <div>{fullName}</div>;
+
     return (
       <div className='image-primary'>
         <div className='main-header-container'>
           <div className='title'>{egg.name}</div>
         </div>
-        <div
-          className='image'
-          style={{
-            backgroundImage: `url(${egg.image.url})`,
-          }}
-        ></div>
+        <Popover
+          placement='right'
+          content={content}
+          title={title}
+          overlayClassName='popover'
+          trigger='hover'
+          onVisibleChange={this.handleVisibleChange}
+        >
+          <div
+            className='image'
+            style={{
+              backgroundImage: `url(${egg.image.url})`,
+            }}
+          ></div>
+        </Popover>
 
         <div className='hero-select'>
           <LeftOutlined

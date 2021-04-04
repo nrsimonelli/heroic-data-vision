@@ -29,5 +29,6 @@
   &:hover {
     cursor: pointer;
     transform: scale(1.5);
+    transition: 0.5s;
   }
 }

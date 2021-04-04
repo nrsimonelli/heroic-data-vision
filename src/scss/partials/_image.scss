@@ -23,7 +23,7 @@
   .image {
     margin-top: $margin-half;
     @include push-auto;
-
+    transition: 0.5s;
     @include egg(sm);
 
     background-image: linear-gradient(
@@ -34,6 +34,10 @@
     background-size: cover;
 
     @include shadow(2);
+    &:hover {
+      transition: 1s;
+      transform: scale(1.05);
+    }
   }
 }
 

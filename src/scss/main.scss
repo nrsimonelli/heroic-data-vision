@@ -44,3 +44,10 @@
   max-width: $max-width-global;
   width: 100%;
 }
+
+.popover {
+  width: 230px;
+  p {
+    @include text-size(12px, 2);
+  }
+}
