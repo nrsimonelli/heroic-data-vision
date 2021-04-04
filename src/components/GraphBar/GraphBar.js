@@ -14,9 +14,14 @@ const GraphBar = (props) => {
   const heroOne = props.eggData[0];
   const heroTwo = props.eggData[1];
   const hero = props.eggData;
+  const sample = props.data[0];
 
-  const comparePowerStats = Object.keys(hero[0].powerstats);
+  if (!sample) {
+    return null;
+  }
+  const comparePowerStats = Object.keys(sample.powerstats);
   const result = [];
+
   comparePowerStats.forEach(function (powerstat) {
     const statInfo = { powerstat };
     hero.forEach(function (heroInfo) {
