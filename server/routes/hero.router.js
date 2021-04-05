@@ -6,8 +6,9 @@ const MY_URL = process.env.URL;
 const MY_KEY = process.env.TOKEN;
 
 router.get('/', (req, res) => {
-  const INEEDTHISID = req.query.heroId;
-  const FULL_PATH = `${MY_URL}${MY_KEY}/${INEEDTHISID}`;
+  const SEARCH_VAL = req.query.heroId;
+  const FULL_PATH = `${MY_URL}${MY_KEY}/search/${SEARCH_VAL}`;
+
   axios
     .get(`${FULL_PATH}`)
     .then((response) => {
@@ -19,8 +20,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/egg1', (req, res, next) => {
-  const INEEDTHISID = req.query.heroId;
-  const FULL_PATH = `${MY_URL}${MY_KEY}/${INEEDTHISID}`;
+  const HERO_ID = req.query.heroId;
+  const FULL_PATH = `${MY_URL}${MY_KEY}/${HERO_ID}`;
 
   axios
     .get(`${FULL_PATH}`)
@@ -33,8 +34,8 @@ router.get('/egg1', (req, res, next) => {
 });
 
 router.get('/egg2', (req, res, next) => {
-  const INEEDTHISID = req.query.heroId;
-  const FULL_PATH = `${MY_URL}${MY_KEY}/${INEEDTHISID}`;
+  const HERO_ID = req.query.heroId;
+  const FULL_PATH = `${MY_URL}${MY_KEY}/${HERO_ID}`;
 
   axios
     .get(`${FULL_PATH}`)
