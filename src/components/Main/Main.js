@@ -115,7 +115,6 @@ const STATIC_DATA = [
 class Main extends Component {
   componentDidMount() {
     this.setGraphType();
-    this.delayRender();
     this.eggOneId(70);
     this.eggTwoId(720);
   }
@@ -124,10 +123,6 @@ class Main extends Component {
     this.props.dispatch({
       type: 'SET_LINE',
     });
-  };
-
-  delayRender = () => {
-    this.setState({ loading: false });
   };
 
   changeGraphType = () => {
@@ -143,6 +138,7 @@ class Main extends Component {
       this.props.dispatch({ type: 'FETCH_RADAR' });
     }
   };
+
   eggOneId = (value) => {
     const heroId = value;
     this.props.dispatch({
@@ -151,6 +147,7 @@ class Main extends Component {
     });
     console.log('eggOne says:', value);
   };
+
   eggTwoId = (value) => {
     const heroId = value;
     this.props.dispatch({

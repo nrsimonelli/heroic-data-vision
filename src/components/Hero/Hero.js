@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Popover } from 'antd';
 
+import Search from '../Search/Search';
+
 import {
   LeftOutlined,
   RightOutlined,
@@ -106,9 +108,7 @@ class Hero extends Component {
 
     return (
       <div className='image-primary'>
-        <div className='main-header-container'>
-          <div className='title'>{egg.name}</div>
-        </div>
+        <Search title={egg.name} />
         <Popover
           placement='right'
           content={content}
