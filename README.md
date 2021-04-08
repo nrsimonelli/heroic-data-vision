@@ -2,23 +2,23 @@
 
 [Its Alive!](https://heroic-winds.herokuapp.com)
 
+![HeroGif](./public/images/heroGif.gif)
+
+## Compare the strengths & weaknesses of your favorite heroes
+
 ![BarGraph](./public/images/bar.png)
 
-## Compare the strengths and weaknesses of your favorite heroes!
+## With over 700 different characters to choose from
 
 ![WaveGraph](./public/images/wave.png)
 
-## Now with search functionality
-
-![HeroGif](./public/images/heroGif.gif)
-
 ## How to start
 
-### download zip or fork and clone project repository
+### Fork & clone the project or download zip file
 
-### create a `.env` in the root of your project folder
+### Create an `.env` in the root of your project folder
 
-In order to run the API successfully you will need to create your own dotenv file with the following variables:
+***In order to run the API successfully you will need to create your own dotenv file with the following variables:***
 
 - `URL` => `https://superheroapi.com/api/`
 
