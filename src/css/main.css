@@ -432,4 +432,17 @@ a:hover {
   line-height: 2;
 }
 
+.ant-select-selection-placeholder {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.selection-title {
+  text-align-last: center;
+}
+
+.ant-select-selection-search input {
+  text-align: center;
+  caret-color: transparent;
+}
+
 /*# sourceMappingURL=main.css.map */

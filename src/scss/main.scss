@@ -51,3 +51,18 @@
     @include text-size(12px, 2);
   }
 }
+
+.ant-select-selection-placeholder {
+  color: $text-primary;
+}
+
+.selection-title {
+  text-align-last: center;
+}
+
+.ant-select-selection-search {
+  input {
+    text-align: center;
+    caret-color: transparent;
+  }
+}
