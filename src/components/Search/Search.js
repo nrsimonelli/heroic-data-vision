@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Select } from 'antd';
 
 const { Option } = Select;
 
 const Search = (data) => {
   console.log('searchState', data);
-  const [searchString, setSearchString] = useState(undefined);
+
+  const placeholderName = data.title;
 
   const options = data.list.results
     ? data.list.results.map((x) => (
@@ -24,7 +25,6 @@ const Search = (data) => {
 
   const handleChange = (value) => {
     console.log('string value is:', value);
-    setSearchString(value);
     data.setEgg(value);
   };
 
@@ -33,8 +33,8 @@ const Search = (data) => {
       <Select
         className='selection-title'
         showSearch
-        value={searchString}
-        placeholder={data.title}
+        value={null}
+        placeholder={placeholderName}
         bordered={false}
         defaultActiveFirstOption={false}
         showArrow={true}

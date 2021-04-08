@@ -65,7 +65,7 @@ class Hero extends Component {
       eggData.push(egg);
     };
 
-    const prevClicked = () => {
+    const prevClicked = async () => {
       let newHeroId = 731;
       if (egg.id > 1) {
         newHeroId = egg.id - 1;
@@ -75,11 +75,11 @@ class Hero extends Component {
         newHeroId = 731;
       }
 
-      heroId(newHeroId);
+      await heroId(newHeroId);
       eggData.push(egg);
     };
 
-    const nextClicked = () => {
+    const nextClicked = async () => {
       let newHeroId = 1;
       if (egg.id < 731) {
         newHeroId = Number(egg.id) + 1;
@@ -88,9 +88,10 @@ class Hero extends Component {
       if (egg.id === 731) {
         newHeroId = Number(1);
       }
-
+      await heroId(newHeroId);
       eggData.push(egg);
-      heroId(newHeroId);
+      console.log('egg', egg);
+      console.log('eggData', eggData);
     };
 
     const content = (
