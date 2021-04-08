@@ -44,6 +44,7 @@ class Hero extends Component {
     const heroId = this.props.heroId;
     const egg = this.props.egg;
     const eggData = [];
+    const searchFunction = this.props.searchFunction;
 
     const {
       biography: {
@@ -108,7 +109,12 @@ class Hero extends Component {
 
     return (
       <div className='image-primary'>
-        <Search title={egg.name} />
+        <Search
+          title={egg.name}
+          search={searchFunction}
+          list={this.props.heroList}
+          setEgg={heroId}
+        />
         <Popover
           placement='right'
           content={content}
@@ -146,6 +152,7 @@ class Hero extends Component {
 const mapReduxStateToProps = (reduxState) => ({
   eggOne: reduxState.eggOneReducer,
   eggTwo: reduxState.eggTwoReducer,
+  heroList: reduxState.heroReducer,
 });
 
 export default connect(mapReduxStateToProps)(Hero);

@@ -157,6 +157,22 @@ class Main extends Component {
     console.log('eggTwo says', value);
   };
 
+  eggOneSearch = (value) => {
+    const string = value;
+    this.props.dispatch({
+      type: 'FETCH_HERO',
+      params: { string },
+    });
+  };
+
+  eggTwoSearch = (value) => {
+    const string = value;
+    this.props.dispatch({
+      type: 'FETCH_HERO',
+      params: { string },
+    });
+  };
+
   render() {
     const type = this.props.graph.type;
     const eggOneData = this.props.eggOne;
@@ -168,8 +184,16 @@ class Main extends Component {
         <div className='main-content-container'>
           {eggOneData && eggTwoData ? (
             <>
-              <Hero egg={eggOneData} heroId={this.eggOneId} />
-              <Hero egg={eggTwoData} heroId={this.eggTwoId} />
+              <Hero
+                egg={eggOneData}
+                heroId={this.eggOneId}
+                searchFunction={this.eggOneSearch}
+              />
+              <Hero
+                egg={eggTwoData}
+                heroId={this.eggTwoId}
+                searchFunction={this.eggTwoSearch}
+              />
               <div className='graph-secondary'>
                 <div
                   className='switch-icon'

@@ -6,7 +6,7 @@ const MY_URL = process.env.URL;
 const MY_KEY = process.env.TOKEN;
 
 router.get('/', (req, res) => {
-  const SEARCH_VAL = req.query.heroId;
+  const SEARCH_VAL = req.query.string;
   const FULL_PATH = `${MY_URL}${MY_KEY}/search/${SEARCH_VAL}`;
 
   axios

@@ -391,6 +391,7 @@ a:hover {
 }
 
 .main-header-container {
+  border: 2px solid green;
   width: 100%;
   max-width: 1140px;
   margin-left: auto;
@@ -430,6 +431,18 @@ a:hover {
 .popover p {
   font-size: 12px;
   line-height: 2;
+}
+
+.ant-select-selection-placeholder {
+  color: rgba(0, 0, 0, 0.85);
+  border: 2px solid red;
+}
+
+.title {
+  border: 2px solid blue;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */
