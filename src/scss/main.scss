@@ -21,7 +21,6 @@
 }
 
 .main-header-container {
-  @include border(green);
   width: 100%;
   max-width: $max-width-global;
   @include push-auto;
@@ -55,12 +54,15 @@
 
 .ant-select-selection-placeholder {
   color: $text-primary;
-  @include border();
 }
 
-.title {
-  @include border(blue);
-  padding-left: 12px;
-  padding-right: 12px;
-  text-align: center;
+.selection-title {
+  text-align-last: center;
+}
+
+.ant-select-selection-search {
+  input {
+    text-align: center;
+    caret-color: transparent;
+  }
 }

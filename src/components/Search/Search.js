@@ -3,15 +3,6 @@ import { Select } from 'antd';
 
 const { Option } = Select;
 
-const searchValue = (value) => {
-  const searchString = value;
-  this.props.dispatch({
-    type: 'FETCH_EGGTWO',
-    params: { searchString },
-  });
-  console.log('searchString is:', value);
-};
-
 const Search = (data) => {
   console.log('searchState', data);
   const [searchString, setSearchString] = useState(undefined);
@@ -39,19 +30,29 @@ const Search = (data) => {
 
   return (
     <div className='main-header-container'>
-      {/* <div className='title'>{data.title}</div> */}
       <Select
-        className='title'
+        className='selection-title'
         showSearch
         value={searchString}
         placeholder={data.title}
         bordered={false}
         defaultActiveFirstOption={false}
-        showArrow={false}
+        showArrow={true}
         filterOption={false}
         onSearch={handleSearch}
         onChange={handleChange}
         notFoundContent={null}
+        size={'large'}
+        style={{
+          marginTop: 0,
+          marginBottom: 0,
+          marginLeft: 24,
+          marginRight: 24,
+        }}
+        dropdownStyle={{
+          backgroundColor: 'rgba(255,255,255,.7)',
+          textAlign: 'center',
+        }}
       >
         {options}
       </Select>
