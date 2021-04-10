@@ -439,9 +439,16 @@ a:hover {
 .selection-title {
   text-align-last: center;
 }
+.selection-title :hover .ant-select-selection-placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
 
 .ant-select-selection-search input {
-  caret-color: #52c41a;
+  text-align: center;
+  caret-color: rgba(0, 0, 0, 0.85);
+}
+.ant-select-selection-search .ant-select-selection-placeholder {
+  color: #fadb14;
 }
 
 /*# sourceMappingURL=main.css.map */

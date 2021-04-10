@@ -58,10 +58,20 @@
 
 .selection-title {
   text-align-last: center;
+  :hover {
+    .ant-select-selection-placeholder {
+      color: $black-45;
+    }
+  }
 }
 
 .ant-select-selection-search {
   input {
-    caret-color: $green;
+    text-align: center;
+    caret-color: $black-85;
+  }
+
+  .ant-select-selection-placeholder {
+    color: $yellow;
   }
 }
