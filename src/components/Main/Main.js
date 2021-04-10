@@ -117,6 +117,10 @@ class Main extends Component {
     this.setGraphType();
     this.eggOneId(70);
     this.eggTwoId(720);
+    if (!this.props.super) {
+      this.fetchAllSuper();
+      console.log('fetching supers...');
+    }
   }
 
   setGraphType = () => {
@@ -170,6 +174,12 @@ class Main extends Component {
     this.props.dispatch({
       type: 'FETCH_HERO',
       params: { string },
+    });
+  };
+
+  fetchAllSuper = () => {
+    this.props.dispatch({
+      type: 'FETCH_ALL',
     });
   };
 
@@ -245,6 +255,7 @@ const mapReduxStateToProps = (reduxState) => ({
   eggOne: reduxState.eggOneReducer,
   eggTwo: reduxState.eggTwoReducer,
   graph: reduxState.graphTypeReducer,
+  super: reduxState.superReducer,
 });
 
 export default connect(mapReduxStateToProps)(Main);
