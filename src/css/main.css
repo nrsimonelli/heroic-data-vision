@@ -441,8 +441,7 @@ a:hover {
 }
 
 .ant-select-selection-search input {
-  text-align: center;
-  caret-color: transparent;
+  caret-color: #52c41a;
 }
 
 /*# sourceMappingURL=main.css.map */
