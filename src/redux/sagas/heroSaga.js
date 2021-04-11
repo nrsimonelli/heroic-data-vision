@@ -13,23 +13,17 @@ function* fetchHero(params) {
 
 function* fetchEggOne(params) {
   try {
-    const response = yield axios.get('/api/egg1', params);
-    yield put({ type: 'SET_EGGONE', payload: response.data });
+    yield put({ type: 'SET_EGGONE', payload: params });
   } catch (err) {
     console.log('api get request EGGONE failed', err);
-  } finally {
-    yield put({ type: 'CLEAR_HERO' });
   }
 }
 
 function* fetchEggTwo(params) {
   try {
-    const response = yield axios.get('/api/egg2', params);
-    yield put({ type: 'SET_EGGTWO', payload: response.data });
+    yield put({ type: 'SET_EGGTWO', payload: params });
   } catch (err) {
     console.log('api get request EGGTWO failed', err);
-  } finally {
-    yield put({ type: 'CLEAR_HERO' });
   }
 }
 

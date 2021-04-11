@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/first', (req, res) => {
   let queryString = `
       SELECT * FROM hero_info WHERE id = $1;
     `;

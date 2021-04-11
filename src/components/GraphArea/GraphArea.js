@@ -14,20 +14,25 @@ const GraphArea = (props) => {
   const heroOne = props.eggData[0];
   const heroTwo = props.eggData[1];
   const hero = props.eggData;
-  const sample = props.data[0];
 
-  if (!sample) {
-    return null;
-  }
-  const comparePowerStats = Object.keys(sample.powerstats);
+  const keys = [
+    'intelligence_score',
+    'strength_score',
+    'speed_score',
+    'durability_score',
+    'power_score',
+    'combat_score',
+  ];
+  const xkeys = ['Int', 'Str', 'Spd', 'End', 'Pow', 'Combat'];
+
   const result = [];
 
-  comparePowerStats.forEach(function (powerstat) {
-    const statInfo = { powerstat };
-    hero.forEach(function (heroInfo) {
-      statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+  keys.forEach((stat) => {
+    const statScore = { stat };
+    hero.forEach((heroInfo) => {
+      statScore[heroInfo.name] = heroInfo[stat];
     });
-    result.push(statInfo);
+    result.push(statScore);
   });
 
   return (
@@ -62,7 +67,7 @@ const GraphArea = (props) => {
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='powerstat' />
+          <XAxis dataKey='stat' />
           <YAxis />
           <Tooltip />
           <Legend />

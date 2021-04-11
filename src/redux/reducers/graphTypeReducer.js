@@ -1,4 +1,4 @@
-const graphTypeReducer = (state = {}, action) => {
+const graphTypeReducer = (state = { type: 'LINE' }, action) => {
   switch (action.type) {
     case 'SET_RADAR':
       return { type: 'RADAR' };

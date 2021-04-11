@@ -12,114 +12,54 @@ import GraphArea from '../GraphArea/GraphArea';
 import GraphRadar from '../GraphRadar/GraphRadar';
 import GraphBar from '../GraphBar/GraphBar';
 
-const STATIC_DATA = [
+const SAMPLE_DATA = [
   {
-    response: 'success',
-    id: '70',
-    name: 'Batman',
-    powerstats: {
-      intelligence: '100',
-      strength: '26',
-      speed: '27',
-      durability: '50',
-      power: '47',
-      combat: '100',
-    },
-    biography: {
-      'full-name': 'Bruce Wayne',
-      'alter-egos': 'No alter egos found.',
-      aliases: ['Insider', 'Matches Malone'],
-      'place-of-birth': 'Crest Hill, Bristol Township; Gotham County',
-      'first-appearance': 'Detective Comics #27',
-      publisher: 'DC Comics',
-      alignment: 'good',
-    },
-    appearance: {
-      gender: 'Male',
-      race: 'Human',
-      height: ["6'2", '188 cm'],
-      weight: ['210 lb', '95 kg'],
-      'eye-color': 'blue',
-      'hair-color': 'black',
-    },
-    work: {
-      occupation: 'Businessman',
-      base:
-        'Batcave, Stately Wayne Manor, Gotham City; Hall of Justice, Justice League Watchtower',
-    },
-    connections: {
-      'group-affiliation':
-        'Batman Family, Batman Incorporated, Justice League, Outsiders, Wayne Enterprises, Club of Heroes, formerly White Lantern Corps, Sinestro Corps',
-      relatives:
-        'Damian Wayne (son), Dick Grayson (adopted son), Tim Drake (adopted son), Jason Todd (adopted son), Cassandra Cain (adopted ward)\nMartha Wayne (mother, deceased), Thomas Wayne (father, deceased), Alfred Pennyworth (former guardian), Roderick Kane (grandfather, deceased), Elizabeth Kane (grandmother, deceased), Nathan Kane (uncle, deceased), Simon Hurt (ancestor), Wayne Family',
-    },
-    image: {
-      url:
-        'https://www.superherodb.com/pictures2/portraits/10/100/639.jpg',
-    },
+    id: 78,
+    name: 'Aragorn',
+    real_name: 'Aragorn II Elessar',
+    full_name: null,
+    overall_score: '7',
+    history_text:
+      "Aragorn II (1 March Third Age 2931 – Fourth Age 120, died aged 210 years) was the son of Arathorn II and Gilraen. He was the last Chieftain of the Dúnedain and a direct descendant through many generations of Isildur, the last High King of both Arnor and Gondor. Aragorn would become the greatest Man of his time, leading the Men of the West against Sauron's forces, helping to destroy the One Ring, and reuniting the Kingdoms of Arnor and Gondor.",
+    powers_text: null,
+    intelligence_score: 90,
+    strength_score: 15,
+    speed_score: 40,
+    durability_score: 55,
+    power_score: 55,
+    combat_score: 100,
+    superpowers:
+      "['Accelerated Healing', 'Agility', 'Empathy', 'Intelligence', 'Longevity', 'Marksmanship', 'Omnilingualism', 'Stamina', 'Stealth', 'Weapon-based Powers', 'Weapons Master']",
+    alter_egos: '[]',
+    aliases: "['Estel, Telcontar, Thorongil, Strider']",
+    place_of_birth: 'Eriador',
+    first_appearance: null,
+    alignment: 'Good',
+    occupation:
+      'Chieftain of the Dúnedain, King of the Reunited Kingdom',
+    relatives:
+      'Arwen(Wife),Eldarion(Son),Arathorn II(father),Gilraen(mother),Elrond(foster father)',
+    gender: 'Male',
+    type_race: 'Human',
+    height: "6'6 • 198 cm",
+    weight: '-',
+    eye_color: 'Grey',
+    hair_color: 'Brown',
+    skin_color: null,
+    img: '/pictures2/portraits/10/050/10859.jpg?v=1541758649',
   },
-  {
-    response: 'success',
-    id: '720',
-    name: 'Wonder Woman',
-    powerstats: {
-      intelligence: '88',
-      strength: '100',
-      speed: '79',
-      durability: '100',
-      power: '100',
-      combat: '100',
-    },
-    biography: {
-      'full-name': 'Diana Prince',
-      'alter-egos': 'No alter egos found.',
-      aliases: [
-        'Princess Diana',
-        'Princess of the Amazons',
-        'Goddess of Truth',
-        ' Wondy',
-        'Wonder Girl',
-        'The Amazon Princess',
-      ],
-      'place-of-birth': 'Themyscira',
-      'first-appearance': 'All-Star Comics #8 (December, 1941)',
-      publisher: 'DC Comics',
-      alignment: 'good',
-    },
-    appearance: {
-      gender: 'Female',
-      race: 'Amazon',
-      height: ["6'0", '183 cm'],
-      weight: ['165 lb', '74 kg'],
-      'eye-color': 'Blue',
-      'hair-color': 'Black',
-    },
-    work: {
-      occupation:
-        'Adventurer, Emissary to the world of Man, Protector of Paradise Island; former Goddess of Truth',
-      base: '-',
-    },
-    connections: {
-      'group-affiliation':
-        'Justice League of America, Justice Society of America (pre-Crisis Earth-2 version); All-Star Squadron (pre-Crisis Earth-2 version)',
-      relatives:
-        'Queen Hippolyta (mother, deceased), Donna Troy (Troia) (magically-created duplicate)',
-    },
-    image: {
-      url:
-        'https://www.superherodb.com/pictures2/portraits/10/100/807.jpg',
-    },
-  },
-]; // starting heroes
+];
 
 class Main extends Component {
   componentDidMount() {
     this.setGraphType();
-    this.eggOneId(70);
-    this.eggTwoId(720);
+
     if (!this.props.super) {
+      let alpha = Math.floor(Math.random() * 1450);
+      let beta = Math.floor(Math.random() * 1450);
       this.fetchAllSuper();
-      console.log('fetching supers...');
+      this.eggOneId(alpha);
+      this.eggTwoId(beta);
     }
   }
 
@@ -144,19 +84,17 @@ class Main extends Component {
   };
 
   eggOneId = (value) => {
-    const heroId = value;
     this.props.dispatch({
       type: 'FETCH_EGGONE',
-      params: { heroId },
+      params: { value },
     });
     console.log('eggOne says:', value);
   };
 
   eggTwoId = (value) => {
-    const heroId = value;
     this.props.dispatch({
       type: 'FETCH_EGGTWO',
-      params: { heroId },
+      params: { value },
     });
     console.log('eggTwo says', value);
   };
@@ -185,22 +123,27 @@ class Main extends Component {
 
   render() {
     const type = this.props.graph.type;
-    const eggOneData = this.props.eggOne;
-    const eggTwoData = this.props.eggTwo;
-    const eggData = [eggOneData, eggTwoData];
+    const eggOne = this.props.eggOne;
+    const eggTwo = this.props.eggTwo;
+    const superHero = this.props.superHero;
+
+    console.log('eggOne', eggOne);
+    console.log('eggTwo', eggTwo);
+
+    console.log('superHero', superHero);
 
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          {eggOneData && eggTwoData ? (
+          {superHero ? (
             <>
               <Hero
-                egg={eggOneData}
+                egg={superHero[eggOne.params.value]}
                 heroId={this.eggOneId}
                 searchFunction={this.eggOneSearch}
               />
               <Hero
-                egg={eggTwoData}
+                egg={superHero[eggTwo.params.value]}
                 heroId={this.eggTwoId}
                 searchFunction={this.eggTwoSearch}
               />
@@ -230,11 +173,26 @@ class Main extends Component {
                 </div>
 
                 {type === 'LINE' ? (
-                  <GraphArea eggData={eggData} data={STATIC_DATA} />
+                  <GraphArea
+                    eggData={[
+                      superHero[eggOne.params.value],
+                      superHero[eggTwo.params.value],
+                    ]}
+                  />
                 ) : type === 'RADAR' ? (
-                  <GraphRadar eggData={eggData} data={STATIC_DATA} />
+                  <GraphRadar
+                    eggData={[
+                      superHero[eggOne.params.value],
+                      superHero[eggTwo.params.value],
+                    ]}
+                  />
                 ) : type === 'BAR' ? (
-                  <GraphBar eggData={eggData} data={STATIC_DATA} />
+                  <GraphBar
+                    eggData={[
+                      superHero[eggOne.params.value],
+                      superHero[eggTwo.params.value],
+                    ]}
+                  />
                 ) : (
                   <LoadingOutlined />
                 )}
@@ -255,7 +213,7 @@ const mapReduxStateToProps = (reduxState) => ({
   eggOne: reduxState.eggOneReducer,
   eggTwo: reduxState.eggTwoReducer,
   graph: reduxState.graphTypeReducer,
-  super: reduxState.superReducer,
+  superHero: reduxState.superReducer,
 });
 
 export default connect(mapReduxStateToProps)(Main);
