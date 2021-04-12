@@ -46,33 +46,21 @@ class Hero extends Component {
     const eggData = [];
     const searchFunction = this.props.searchFunction;
 
-    const {
-      biography: {
-        'full-name': fullName,
-        'place-of-birth': placeOfBirth,
-        'first-appearance': firstAppearance,
-      },
-      appearance: { 'eye-color': eyeColor },
-    } = egg;
-
     const randClicked = async () => {
-      let newHeroId = Math.floor(
-        Math.random() * (Math.floor(723) - Math.ceil(0) + 1) +
-          Math.ceil(0)
-      );
+      let newHeroId = Math.floor(Math.random() * 1396);
 
       await heroId(newHeroId);
       eggData.push(egg);
     };
 
     const prevClicked = async () => {
-      let newHeroId = 731;
+      let newHeroId = 1396;
       if (egg.id > 1) {
-        newHeroId = egg.id - 1;
+        newHeroId = egg.id - 2;
       }
 
       if (egg.id === 1) {
-        newHeroId = 731;
+        newHeroId = 1396;
       }
 
       await heroId(newHeroId);
@@ -81,12 +69,12 @@ class Hero extends Component {
 
     const nextClicked = async () => {
       let newHeroId = 1;
-      if (egg.id < 731) {
-        newHeroId = Number(egg.id) + 1;
+      if (egg.id < 1397) {
+        newHeroId = Number(egg.id);
       }
 
-      if (egg.id === 731) {
-        newHeroId = Number(1);
+      if (egg.id === 1397) {
+        newHeroId = Number(0);
       }
       await heroId(newHeroId);
       eggData.push(egg);
@@ -97,16 +85,39 @@ class Hero extends Component {
     const content = (
       <div>
         <p>
-          {egg.appearance.race} {egg.appearance.gender}, {eyeColor}{' '}
-          eyes, {egg.appearance.height[0]}, {egg.appearance.weight[0]}
+          {!egg.type_race ? 'Race unknown, ' : egg.type_race}{' '}
+          {!egg.gender ? 'gender unknown' : egg.gender}
         </p>
-        <p>Birthplace: {placeOfBirth}</p>
-        <p>First appearance {firstAppearance}</p>
-        <p>Profession: {egg.work.occupation}</p>
+        <p>
+          {egg.height === '-'
+            ? 'Biometrics: unknown'
+            : egg.height + ', ' + egg.weight}
+        </p>
+        <p>
+          Birthplace:{' '}
+          {!egg.place_of_birth ? 'unknown' : egg.place_of_birth}
+        </p>
+        <p>
+          First appearance:{' '}
+          {!egg.first_appearance ? 'unknown' : egg.first_appearance}
+        </p>
+        <p>
+          Profession: {!egg.occupation ? 'unknown' : egg.occupation}
+        </p>
       </div>
     );
 
-    const title = <div>{fullName}</div>;
+    const title = (
+      <div>
+        {!egg.real_name
+          ? !egg.full_name
+            ? egg.name
+            : egg.full_name
+          : egg.real_name}
+      </div>
+    );
+
+    const image = 'https://www.superherodb.com' + egg.img;
 
     return (
       <div className='image-primary'>
@@ -127,7 +138,7 @@ class Hero extends Component {
           <div
             className='image'
             style={{
-              backgroundImage: `url(${egg.image.url})`,
+              backgroundImage: `url(${image})`,
             }}
           ></div>
         </Popover>
@@ -138,6 +149,7 @@ class Hero extends Component {
             onClick={prevClicked}
             style={{ marginRight: 24 }}
           />
+
           <ReloadOutlined className='icon' onClick={randClicked} />
           <RightOutlined
             className='icon'

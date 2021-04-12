@@ -14,20 +14,24 @@ const GraphBar = (props) => {
   const heroOne = props.eggData[0];
   const heroTwo = props.eggData[1];
   const hero = props.eggData;
-  const sample = props.data[0];
 
-  if (!sample) {
-    return null;
-  }
-  const comparePowerStats = Object.keys(sample.powerstats);
+  const keys = [
+    'intelligence',
+    'strength',
+    'speed',
+    'durability',
+    'power',
+    'combat',
+  ];
+
   const result = [];
 
-  comparePowerStats.forEach(function (powerstat) {
-    const statInfo = { powerstat };
-    hero.forEach(function (heroInfo) {
-      statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+  keys.forEach((stat) => {
+    const statScore = { stat };
+    hero.forEach((heroInfo) => {
+      statScore[heroInfo.name] = heroInfo[stat];
     });
-    result.push(statInfo);
+    result.push(statScore);
   });
 
   return (
@@ -35,7 +39,7 @@ const GraphBar = (props) => {
       <ResponsiveContainer height='100%' width='100%'>
         <BarChart width={500} height={400} data={result}>
           <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='powerstat' />
+          <XAxis dataKey='stat' />
           <YAxis />
           <Tooltip />
           <Legend />

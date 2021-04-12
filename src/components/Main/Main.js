@@ -12,111 +12,17 @@ import GraphArea from '../GraphArea/GraphArea';
 import GraphRadar from '../GraphRadar/GraphRadar';
 import GraphBar from '../GraphBar/GraphBar';
 
-const STATIC_DATA = [
-  {
-    response: 'success',
-    id: '70',
-    name: 'Batman',
-    powerstats: {
-      intelligence: '100',
-      strength: '26',
-      speed: '27',
-      durability: '50',
-      power: '47',
-      combat: '100',
-    },
-    biography: {
-      'full-name': 'Bruce Wayne',
-      'alter-egos': 'No alter egos found.',
-      aliases: ['Insider', 'Matches Malone'],
-      'place-of-birth': 'Crest Hill, Bristol Township; Gotham County',
-      'first-appearance': 'Detective Comics #27',
-      publisher: 'DC Comics',
-      alignment: 'good',
-    },
-    appearance: {
-      gender: 'Male',
-      race: 'Human',
-      height: ["6'2", '188 cm'],
-      weight: ['210 lb', '95 kg'],
-      'eye-color': 'blue',
-      'hair-color': 'black',
-    },
-    work: {
-      occupation: 'Businessman',
-      base:
-        'Batcave, Stately Wayne Manor, Gotham City; Hall of Justice, Justice League Watchtower',
-    },
-    connections: {
-      'group-affiliation':
-        'Batman Family, Batman Incorporated, Justice League, Outsiders, Wayne Enterprises, Club of Heroes, formerly White Lantern Corps, Sinestro Corps',
-      relatives:
-        'Damian Wayne (son), Dick Grayson (adopted son), Tim Drake (adopted son), Jason Todd (adopted son), Cassandra Cain (adopted ward)\nMartha Wayne (mother, deceased), Thomas Wayne (father, deceased), Alfred Pennyworth (former guardian), Roderick Kane (grandfather, deceased), Elizabeth Kane (grandmother, deceased), Nathan Kane (uncle, deceased), Simon Hurt (ancestor), Wayne Family',
-    },
-    image: {
-      url:
-        'https://www.superherodb.com/pictures2/portraits/10/100/639.jpg',
-    },
-  },
-  {
-    response: 'success',
-    id: '720',
-    name: 'Wonder Woman',
-    powerstats: {
-      intelligence: '88',
-      strength: '100',
-      speed: '79',
-      durability: '100',
-      power: '100',
-      combat: '100',
-    },
-    biography: {
-      'full-name': 'Diana Prince',
-      'alter-egos': 'No alter egos found.',
-      aliases: [
-        'Princess Diana',
-        'Princess of the Amazons',
-        'Goddess of Truth',
-        ' Wondy',
-        'Wonder Girl',
-        'The Amazon Princess',
-      ],
-      'place-of-birth': 'Themyscira',
-      'first-appearance': 'All-Star Comics #8 (December, 1941)',
-      publisher: 'DC Comics',
-      alignment: 'good',
-    },
-    appearance: {
-      gender: 'Female',
-      race: 'Amazon',
-      height: ["6'0", '183 cm'],
-      weight: ['165 lb', '74 kg'],
-      'eye-color': 'Blue',
-      'hair-color': 'Black',
-    },
-    work: {
-      occupation:
-        'Adventurer, Emissary to the world of Man, Protector of Paradise Island; former Goddess of Truth',
-      base: '-',
-    },
-    connections: {
-      'group-affiliation':
-        'Justice League of America, Justice Society of America (pre-Crisis Earth-2 version); All-Star Squadron (pre-Crisis Earth-2 version)',
-      relatives:
-        'Queen Hippolyta (mother, deceased), Donna Troy (Troia) (magically-created duplicate)',
-    },
-    image: {
-      url:
-        'https://www.superherodb.com/pictures2/portraits/10/100/807.jpg',
-    },
-  },
-]; // starting heroes
-
 class Main extends Component {
   componentDidMount() {
     this.setGraphType();
-    this.eggOneId(70);
-    this.eggTwoId(720);
+
+    if (!this.props.super) {
+      let alpha = Math.floor(Math.random() * 1397);
+      let beta = Math.floor(Math.random() * 1397);
+      this.fetchAllSuper();
+      this.eggOneId(alpha);
+      this.eggTwoId(beta);
+    }
   }
 
   setGraphType = () => {
@@ -140,19 +46,17 @@ class Main extends Component {
   };
 
   eggOneId = (value) => {
-    const heroId = value;
     this.props.dispatch({
       type: 'FETCH_EGGONE',
-      params: { heroId },
+      params: { value },
     });
     console.log('eggOne says:', value);
   };
 
   eggTwoId = (value) => {
-    const heroId = value;
     this.props.dispatch({
       type: 'FETCH_EGGTWO',
-      params: { heroId },
+      params: { value },
     });
     console.log('eggTwo says', value);
   };
@@ -173,24 +77,35 @@ class Main extends Component {
     });
   };
 
+  fetchAllSuper = () => {
+    this.props.dispatch({
+      type: 'FETCH_ALL',
+    });
+  };
+
   render() {
     const type = this.props.graph.type;
-    const eggOneData = this.props.eggOne;
-    const eggTwoData = this.props.eggTwo;
-    const eggData = [eggOneData, eggTwoData];
+    const eggOne = this.props.eggOne;
+    const eggTwo = this.props.eggTwo;
+    const superHero = this.props.superHero;
+
+    console.log('eggOne', eggOne);
+    console.log('eggTwo', eggTwo);
+
+    console.log('superHero', superHero);
 
     return (
       <div className='main-root'>
         <div className='main-content-container'>
-          {eggOneData && eggTwoData ? (
+          {superHero ? (
             <>
               <Hero
-                egg={eggOneData}
+                egg={superHero[eggOne.params.value]}
                 heroId={this.eggOneId}
                 searchFunction={this.eggOneSearch}
               />
               <Hero
-                egg={eggTwoData}
+                egg={superHero[eggTwo.params.value]}
                 heroId={this.eggTwoId}
                 searchFunction={this.eggTwoSearch}
               />
@@ -220,11 +135,26 @@ class Main extends Component {
                 </div>
 
                 {type === 'LINE' ? (
-                  <GraphArea eggData={eggData} data={STATIC_DATA} />
+                  <GraphArea
+                    eggData={[
+                      superHero[eggOne.params.value],
+                      superHero[eggTwo.params.value],
+                    ]}
+                  />
                 ) : type === 'RADAR' ? (
-                  <GraphRadar eggData={eggData} data={STATIC_DATA} />
+                  <GraphRadar
+                    eggData={[
+                      superHero[eggOne.params.value],
+                      superHero[eggTwo.params.value],
+                    ]}
+                  />
                 ) : type === 'BAR' ? (
-                  <GraphBar eggData={eggData} data={STATIC_DATA} />
+                  <GraphBar
+                    eggData={[
+                      superHero[eggOne.params.value],
+                      superHero[eggTwo.params.value],
+                    ]}
+                  />
                 ) : (
                   <LoadingOutlined />
                 )}
@@ -245,6 +175,8 @@ const mapReduxStateToProps = (reduxState) => ({
   eggOne: reduxState.eggOneReducer,
   eggTwo: reduxState.eggTwoReducer,
   graph: reduxState.graphTypeReducer,
+  superHero: reduxState.superReducer,
+  heroList: reduxState.heroReducer,
 });
 
 export default connect(mapReduxStateToProps)(Main);
