@@ -33,7 +33,7 @@ class Main extends Component {
 
   changeGraphType = () => {
     const type = this.props.graph.type;
-    console.log('type', type);
+
     if (type === 'LINE') {
       this.props.dispatch({ type: 'FETCH_BAR' });
     }
@@ -50,7 +50,6 @@ class Main extends Component {
       type: 'FETCH_EGGONE',
       params: { value },
     });
-    console.log('eggOne says:', value);
   };
 
   eggTwoId = (value) => {
@@ -58,7 +57,6 @@ class Main extends Component {
       type: 'FETCH_EGGTWO',
       params: { value },
     });
-    console.log('eggTwo says', value);
   };
 
   eggOneSearch = (value) => {
@@ -88,11 +86,6 @@ class Main extends Component {
     const eggOne = this.props.eggOne;
     const eggTwo = this.props.eggTwo;
     const superHero = this.props.superHero;
-
-    console.log('eggOne', eggOne);
-    console.log('eggTwo', eggTwo);
-
-    console.log('superHero', superHero);
 
     return (
       <div className='main-root'>

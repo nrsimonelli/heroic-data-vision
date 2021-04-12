@@ -4,8 +4,6 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const Search = (data) => {
-  console.log('searchState', data);
-
   const placeholderName = data.title;
 
   const options =
@@ -15,7 +13,6 @@ const Search = (data) => {
 
   const handleSearch = (value) => {
     if (value) {
-      console.log('value is', value);
       data.search(value);
     } else {
       console.log('nothing');
@@ -24,7 +21,6 @@ const Search = (data) => {
 
   const handleChange = (value) => {
     const index = value - 1;
-    console.log('string value is:', value);
     data.setEgg(index);
   };
 

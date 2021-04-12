@@ -78,8 +78,6 @@ class Hero extends Component {
       }
       await heroId(newHeroId);
       eggData.push(egg);
-      console.log('egg', egg);
-      console.log('eggData', eggData);
     };
 
     const content = (
