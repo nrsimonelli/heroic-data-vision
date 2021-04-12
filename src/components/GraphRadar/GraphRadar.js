@@ -14,20 +14,24 @@ const GraphRadar = (props) => {
   const heroOne = props.eggData[0];
   const heroTwo = props.eggData[1];
   const hero = props.eggData;
-  const sample = props.data[0];
 
-  if (!sample) {
-    return null;
-  }
-  const comparePowerStats = Object.keys(sample.powerstats);
+  const keys = [
+    'intelligence',
+    'strength',
+    'speed',
+    'durability',
+    'power',
+    'combat',
+  ];
+
   const result = [];
 
-  comparePowerStats.forEach(function (powerstat) {
-    const statInfo = { powerstat };
-    hero.forEach(function (heroInfo) {
-      statInfo[heroInfo.name] = heroInfo.powerstats[powerstat];
+  keys.forEach((stat) => {
+    const statScore = { stat };
+    hero.forEach((heroInfo) => {
+      statScore[heroInfo.name] = heroInfo[stat];
     });
-    result.push(statInfo);
+    result.push(statScore);
   });
 
   return (
@@ -40,7 +44,7 @@ const GraphRadar = (props) => {
           data={result}
         >
           <PolarGrid />
-          <PolarAngleAxis dataKey='powerstat' />
+          <PolarAngleAxis dataKey='stat' />
           <PolarRadiusAxis angle={30} domain={[0, 110]} />
           <Radar
             name={heroOne.name}

@@ -149,6 +149,7 @@ class Hero extends Component {
             onClick={prevClicked}
             style={{ marginRight: 24 }}
           />
+
           <ReloadOutlined className='icon' onClick={randClicked} />
           <RightOutlined
             className='icon'

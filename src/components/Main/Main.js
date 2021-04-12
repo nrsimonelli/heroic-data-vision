@@ -12,51 +12,13 @@ import GraphArea from '../GraphArea/GraphArea';
 import GraphRadar from '../GraphRadar/GraphRadar';
 import GraphBar from '../GraphBar/GraphBar';
 
-const SAMPLE_DATA = [
-  {
-    id: 78,
-    name: 'Aragorn',
-    real_name: 'Aragorn II Elessar',
-    full_name: null,
-    overall_score: '7',
-    history_text:
-      "Aragorn II (1 March Third Age 2931 – Fourth Age 120, died aged 210 years) was the son of Arathorn II and Gilraen. He was the last Chieftain of the Dúnedain and a direct descendant through many generations of Isildur, the last High King of both Arnor and Gondor. Aragorn would become the greatest Man of his time, leading the Men of the West against Sauron's forces, helping to destroy the One Ring, and reuniting the Kingdoms of Arnor and Gondor.",
-    powers_text: null,
-    intelligence_score: 90,
-    strength_score: 15,
-    speed_score: 40,
-    durability_score: 55,
-    power_score: 55,
-    combat_score: 100,
-    superpowers:
-      "['Accelerated Healing', 'Agility', 'Empathy', 'Intelligence', 'Longevity', 'Marksmanship', 'Omnilingualism', 'Stamina', 'Stealth', 'Weapon-based Powers', 'Weapons Master']",
-    alter_egos: '[]',
-    aliases: "['Estel, Telcontar, Thorongil, Strider']",
-    place_of_birth: 'Eriador',
-    first_appearance: null,
-    alignment: 'Good',
-    occupation:
-      'Chieftain of the Dúnedain, King of the Reunited Kingdom',
-    relatives:
-      'Arwen(Wife),Eldarion(Son),Arathorn II(father),Gilraen(mother),Elrond(foster father)',
-    gender: 'Male',
-    type_race: 'Human',
-    height: "6'6 • 198 cm",
-    weight: '-',
-    eye_color: 'Grey',
-    hair_color: 'Brown',
-    skin_color: null,
-    img: '/pictures2/portraits/10/050/10859.jpg?v=1541758649',
-  },
-];
-
 class Main extends Component {
   componentDidMount() {
     this.setGraphType();
 
     if (!this.props.super) {
-      let alpha = Math.floor(Math.random() * 1450);
-      let beta = Math.floor(Math.random() * 1450);
+      let alpha = Math.floor(Math.random() * 1397);
+      let beta = Math.floor(Math.random() * 1397);
       this.fetchAllSuper();
       this.eggOneId(alpha);
       this.eggTwoId(beta);
