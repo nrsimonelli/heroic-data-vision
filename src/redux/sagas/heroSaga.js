@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchHero(params) {
   try {
     console.log('ACTION,', params);
-    const response = yield axios.get('/api', params);
+    const response = yield axios.get('/api/super/search', params);
     yield put({ type: 'SET_HERO', payload: response.data });
   } catch (err) {
     console.log('api get request failed', err);

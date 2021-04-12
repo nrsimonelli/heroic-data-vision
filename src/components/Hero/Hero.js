@@ -47,20 +47,20 @@ class Hero extends Component {
     const searchFunction = this.props.searchFunction;
 
     const randClicked = async () => {
-      let newHeroId = Math.floor(Math.random() * 1397);
+      let newHeroId = Math.floor(Math.random() * 1396);
 
       await heroId(newHeroId);
       eggData.push(egg);
     };
 
     const prevClicked = async () => {
-      let newHeroId = 1397;
-      if (egg.id > 0) {
-        newHeroId = egg.id - 1;
+      let newHeroId = 1396;
+      if (egg.id > 1) {
+        newHeroId = egg.id - 2;
       }
 
-      if (egg.id === 0) {
-        newHeroId = 1397;
+      if (egg.id === 1) {
+        newHeroId = 1396;
       }
 
       await heroId(newHeroId);
@@ -70,7 +70,7 @@ class Hero extends Component {
     const nextClicked = async () => {
       let newHeroId = 1;
       if (egg.id < 1397) {
-        newHeroId = Number(egg.id) + 1;
+        newHeroId = Number(egg.id);
       }
 
       if (egg.id === 1397) {

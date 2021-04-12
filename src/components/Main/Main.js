@@ -214,6 +214,7 @@ const mapReduxStateToProps = (reduxState) => ({
   eggTwo: reduxState.eggTwoReducer,
   graph: reduxState.graphTypeReducer,
   superHero: reduxState.superReducer,
+  heroList: reduxState.heroReducer,
 });
 
 export default connect(mapReduxStateToProps)(Main);

@@ -34,14 +34,15 @@ router.get('/first', (req, res) => {
 
 router.get('/search', (req, res) => {
   let queryString = `
-        SELECT * FROM hero_info WHERE name LIKE '%$1%' ORDER BY id ASC;
+        SELECT * FROM hero_info WHERE name ILIKE '%${req.query.string}%' ORDER BY id ASC;
       `;
   pool
-    .query(queryString, [req.query.string])
+    .query(queryString)
     .then((result) => {
       res.send(result.rows);
     })
-    .catch((error) => {
+    .catch((err) => {
+      console.log(err);
       res.sendStatus(500);
     });
 });

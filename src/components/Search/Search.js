@@ -8,11 +8,10 @@ const Search = (data) => {
 
   const placeholderName = data.title;
 
-  const options = data.list.results
-    ? data.list.results.map((x) => (
-        <Option key={x.id}>{x.name}</Option>
-      ))
-    : null;
+  const options =
+    data.list.length > 0
+      ? data.list.map((x) => <Option key={x.id}>{x.name}</Option>)
+      : null;
 
   const handleSearch = (value) => {
     if (value) {
@@ -24,8 +23,9 @@ const Search = (data) => {
   };
 
   const handleChange = (value) => {
+    const index = value - 1;
     console.log('string value is:', value);
-    data.setEgg(value);
+    data.setEgg(index);
   };
 
   return (
