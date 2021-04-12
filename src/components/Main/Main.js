@@ -17,8 +17,8 @@ class Main extends Component {
     this.setGraphType();
 
     if (!this.props.super) {
-      let alpha = Math.floor(Math.random() * 1397);
-      let beta = Math.floor(Math.random() * 1397);
+      let alpha = 440;
+      let beta = 1336;
       this.fetchAllSuper();
       this.eggOneId(alpha);
       this.eggTwoId(beta);

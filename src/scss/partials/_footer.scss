@@ -2,7 +2,7 @@
 
 .footer-root {
   @include dimensions(60px, 100%);
-  background-color: $color-primary;
+  background: rgba(24, 144, 255, 0.7);
   .container {
     height: 100%;
     @include flex-row;
@@ -16,10 +16,8 @@
   }
 }
 .footer-link {
-  color: $white-85;
   @include hocus {
     cursor: pointer;
-    transform: scale(1.05);
   }
 }
 @include breakpoint-min(xs) {

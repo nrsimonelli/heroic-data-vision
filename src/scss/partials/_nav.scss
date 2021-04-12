@@ -2,8 +2,13 @@
 
 .nav-root {
   @include dimensions(80px, 100%);
-  background-color: $color-primary;
-  color: $text-inverse-primary;
+  background: rgb(24, 144, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(24, 144, 255, 1) 0%,
+    rgba(47, 84, 235, 1) 80%
+  );
+  color: rgb(255, 255, 255);
 
   .container {
     height: 100%;

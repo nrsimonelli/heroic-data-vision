@@ -189,6 +189,7 @@ a {
   text-decoration: none;
 }
 a:hover {
+  color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
 }
 
@@ -206,8 +207,9 @@ a:hover {
 .nav-root {
   height: 80px;
   width: 100%;
-  background-color: #2f54eb;
-  color: rgba(255, 255, 255, 0.85);
+  background: #1890ff;
+  background: linear-gradient(135deg, #1890ff 0%, #2f54eb 80%);
+  color: white;
 }
 .nav-root .container {
   height: 100%;
@@ -239,7 +241,7 @@ a:hover {
 .footer-root {
   height: 60px;
   width: 100%;
-  background-color: #2f54eb;
+  background: rgba(24, 144, 255, 0.7);
 }
 .footer-root .container {
   height: 100%;
@@ -259,12 +261,8 @@ a:hover {
   margin-right: 12px;
 }
 
-.footer-link {
-  color: rgba(255, 255, 255, 0.85);
-}
 .footer-link:hover, .footer-link:focus {
   cursor: pointer;
-  transform: scale(1.05);
 }
 
 @media (min-width: 481px) {
