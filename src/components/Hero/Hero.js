@@ -46,15 +46,6 @@ class Hero extends Component {
     const eggData = [];
     const searchFunction = this.props.searchFunction;
 
-    // const {
-    //   biography: {
-    //     'full-name': fullName,
-    //     'place-of-birth': placeOfBirth,
-    //     'first-appearance': firstAppearance,
-    //   },
-    //   appearance: { 'eye-color': eyeColor },
-    // } = egg;
-
     const randClicked = async () => {
       let newHeroId = Math.floor(Math.random() * 1397);
 
@@ -94,7 +85,7 @@ class Hero extends Component {
     const content = (
       <div>
         <p>
-          {!egg.type_race ? 'Race unknown, ' : egg.type_race}
+          {!egg.type_race ? 'Race unknown, ' : egg.type_race}{' '}
           {!egg.gender ? 'gender unknown' : egg.gender}
         </p>
         <p>

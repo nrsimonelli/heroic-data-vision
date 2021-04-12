@@ -16,14 +16,13 @@ const GraphArea = (props) => {
   const hero = props.eggData;
 
   const keys = [
-    'intelligence_score',
-    'strength_score',
-    'speed_score',
-    'durability_score',
-    'power_score',
-    'combat_score',
+    'intelligence',
+    'strength',
+    'speed',
+    'durability',
+    'power',
+    'combat',
   ];
-  const xkeys = ['Int', 'Str', 'Spd', 'End', 'Pow', 'Combat'];
 
   const result = [];
 
