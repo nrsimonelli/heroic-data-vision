@@ -18,13 +18,9 @@
 
 ### Create an `.env` in the root of your project folder
 
-***In order to run the API successfully you will need to create your own dotenv file with the following variables:***
+_Edit => switched from 3rd party api to hosted db (found a larger and cleaner dataset) token and url variables no longer required._
 
-- `URL` => `https://superheroapi.com/api/`
-
-- `TOKEN` => (_you will need your own personal access token which you can get from superhero API ->_ `https://superheroapi.com/index.html`)
-
-make sure this file is ignored by git if you plan on pushing this repo anywhere.
+_in order to run this locally you will need to created a database named `superhero` with a table `hero_info` please consult the db.sql file for info_
 
 ### Use `yarn add` to install dependencies
 
