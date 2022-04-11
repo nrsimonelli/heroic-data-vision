@@ -1,6 +1,7 @@
 # Data visualization with super heroes
 
-[Its Alive!](https://heroic-winds.herokuapp.com)
+> ## This project has been reworked!
+> ## For the new and improved version please checkout [hero-wind](https://github.com/nrsimonelli/hero-wind)
 
 ![HeroGif](./public/images/heroGif.gif)
 
